@@ -1,0 +1,686 @@
+\documentclass{article}
+\usepackage[cp1252]{inputenc}%input accented characters
+\usepackage[T1]{fontenc}%output accented characters
+\usepackage{lmodern}%to avoid  ugly fonts
+
+\usepackage{graphicx}%to set size figures
+\usepackage{amsmath}%math
+\usepackage{amsthm}
+\usepackage{amsfonts}%math fonts
+\usepackage{url}
+\usepackage{mdframed}
+\usepackage[round]{natbib}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\usepackage{geometry}
+\geometry{letterpaper,margin = 1in}
+\usepackage{setspace}
+\linespread{1.5}
+
+\setcitestyle{citesep={,},aysep={}}
+
+\usepackage[colorlinks,pdfborder=false]{hyperref}
+\definecolor{mynavy}{rgb}{0.05,0.05,0.55}   
+\hypersetup{citecolor=mynavy}
+\hypersetup{anchorcolor=mynavy}
+\hypersetup{linkcolor=mynavy}
+
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{assumption}{Assumption}
+\newtheorem{corollary}{Corollary}
+
+\renewcommand{\arraystretch}{2}
+
+\title{\textbf{Keeping Control Over\\ Boundedly Rational Expectations}}
+
+\author{\begin{tabular}{cc}
+		St\'ephane Dupraz$^{ *}$ & Magali Marx\thanks{We thank Tiziana Assenza, Jean Barth\'elemy, Michael Dobrew, Zeno Enders, Jordi Gal\'{\i}, Laura G\'ati, Ina Hadjini, Sarah Mouabbi, Yeji Sung and Martin Wolf for very useful discussions, and seminar and conference participants at Banque de France, TSE, the HeiT\"uHo workshop, the ASSA 2024 meeting, the ESCB 2024 Warsaw Cluster meeting, HEC Lausanne and the NBER Summer Institute (ME)
+		for very valuable comments. The paper previously circulated under the title ``Anchoring Boundedly Rational Expectations''. The views expressed herein are those of the authors and do not necessarily reflect those of the Banque de France or the Eurosystem.} \\
+		Banque de France & Banque de France
+	    \end{tabular}}
+%\date{\today}
+
+\begin{document}
+	\maketitle
+\pagenumbering{Roman}
+\begin{abstract}
+%How can central banks avoid losing control over inflation expectations? We reconsider the issue away from rational expectations, for a class of boundedly rational expectations embedding cognitive discounting and long-term learning. We show that the monetary policies that deliver a unique bounded equilibrium are characterized as those that sufficiently increase a weighted average of present and future policy rates. Implementation through a Taylor or other feedback rule is unnecessary. Central to this result is the property that what active monetary policy prevents is not self-fulfilling inflation as under rational expectations, but inflation spirals as in models with purely backward-looking expectations.
+How can central banks avoid losing control over inflation expectations? Under rational expectations, respecting the Taylor principle is needed to ward off self-fulfilling inflation. We reconsider the issue away from rational expectations, for a class of boundedly rational expectations embedding cognitive discounting and long-term learning. (1) Self-fulfilling inflation is no longer a concern, but too passive a monetary policy leads to inflation spirals. (2) Active monetary policies can be characterized without restricting to Taylor rules, as those that sufficiently increase a weighted average of present and future policy rates. (3) The more the central bank cares about output stabilization, the more it should deliver the necessary tightening through expectations of future hikes instead of current hikes.
+\end{abstract}
+
+% 100 words limit
+
+\vspace{20pt}
+\textbf{Keywords}: Inflation Expectations, Taylor Principle, Bounded Rationality.
+
+\textbf{JEL Classification}: E52, E31, E43.
+\vspace{20pt}
+
+\clearpage
+\pagenumbering{arabic}
+\section*{Introduction}
+
+How can a central bank avoid losing control over inflation expectations? The question has come back front and center following the Covid pandemic, as the world economy experienced supply shocks and inflation levels of magnitude not seen in 40 years. Standard monetary models provide a well-known response to this question: Respecting the Taylor principle---i.e. increasing interest rates more than one-for-one with inflation---prevents inflation from becoming self-fulfilling and defines an active monetary policy \citep[e.g.][]{Woodford2001}.\footnote{See e.g. Chapter 2 of \cite{Woodford} and Section 2 of \cite{CastilloMartinezReis2022} for excellent introductions to the Taylor principle and equilibrium determinacy under rational expectations.} The last worldwide episode of high inflation---the Great Inflation of the 1970s---has been linked to central banks' failure to respect the Taylor principle \citep{Taylor1999,CGG2000}.
+
+In standard models, the need to respect the Taylor principle is derived under the assumption of rational expectations. In this paper, we revisit the question of how to keep control over inflation expectations when expectations are instead boundedly rational.
+
+What motivates us to revisit this question is a recent important qualification to the need to respect the Taylor principle: It is no longer necessary in most of the models that have been developed in recent years to tackle the forward guidance (FG) puzzle \citep{DNGP2012,CFP2015}. Virtually all solutions to the FG puzzle work by adding discounting to the baseline New-Keynesian model.\footnote{The main solutions rely on household heterogeneity---see e.g. \cite{MKNS2016}, \cite{Bilbiie2020,Bilbiie2021}, \cite{Werning2015} and \cite{AcharyaDogra2020}---and on bounded rationality---see e.g. \cite{Woodford2019}, \cite{FarhiWerning2019}, \cite{Gabaix2020}, \cite{AngeletosLian2018} and \cite{FPHIFLAP}.} But when adding enough discounting to solve the FG puzzle, a unique equilibrium with no self-fulfilling inflation obtains even under an interest-rate peg---a fully passive monetary policy. This would suggest that the need to adopt a sufficiently active monetary policy is an artifact of models subject to the FG puzzle.\footnote{This qualification comes against the backdrop of other criticisms of the Taylor principle. \cite{Cochrane2011} and \cite{Atkesonetal2010} argue that the Taylor principle is insufficient to prevent self-fulfilling inflation since it only guarantees the uniqueness of a bounded equilibrium, leaving open the possibility of self-fulfilling equilibria with unbounded inflation. Conversely, \cite{AngeletosLian2022} show that the Taylor principle is unnecessary to prevent self-fulfilling inflation once one drops the assumption of perfect memory, since a unique equilibrium then obtains even when the Taylor principle is not satisfied.} Yet, recent evidence confirms that too passive a monetary policy makes the central bank prone to losing control over inflation \citep[for instance the recent unfortunate experience of Turkey---see ][]{Gurkaynaketal}.
+
+To revisit how to keep control over inflation expectations we use the model of \cite{Woodford2019}, a generalization to bounded rationality of the baseline New-Keynesian model under rational expectations (Section \ref{sec_model}). Woodford's model combines two departures from rational expectations, each capturing one of the main forms of bounded rationality that have been considered in recent years. First, finite planning horizons make expectations less forward-looking than rational expectations, providing a solution to the FG puzzle. As such, they instantiate a large class of bounded rationality models introduced to tackle the FG puzzle, such as cognitive discounting \citep{Gabaix2020} and k-level thinking \citep{FarhiWerning2019}. Second, long-term learning makes expectations about the long run backward-looking, a feature introduced by Woodford to highlight the fragility of neo-Fisherianism predictions. Learning is a long-standing form of bounded rationality put forward by the adaptive learning literature \citep[][]{EvansHonkapohjaBook}, and shown in recent years to match well with empirical data \citep{EusepiPreston_shorthistory} .
+
+The combined FPH-learning model generalizes both cognitive discounting models and learning models, allowing expectations to be both backward and forward-looking. As \cite{Gustetal2024} show, it does a very good job at capturing the dynamics of expectations in surveys. In particular it can replicate the under and over-reaction of expectations to shocks that have been recently documented in surveys and used to discriminate between models of expectation formation \citep{CG2015,KW2021,AHS2020}.\footnote{For a review of the survey evidence against full-information rational-expectations, see e.g. \cite{BornEndersMuller_literaturereview}.}
+
+We show three results. First we show that in the FPH-learning economy active monetary policy is still necessary to keep control over inflation expectations, but that what it prevents is inflation spirals as in models with purely backward-looking expectations, not self-fulfilling inflation as under rational expectations. To show this, we restrict monetary policy to a Taylor rule and study the existence and nature of equilibria (Section \ref{sec_taylorprinciple}). We show that when there is enough cognitive discounting to avoid the FG puzzle, there always exists a unique equilibrium. Self-fulfilling inflation is not an issue. As a side contribution, we show that uniqueness obtains in the strong sense and not just as uniqueness among bounded equilibria. This bypasses the need to justify a focus on bounded equilibria emphasized by \citep{Cochrane2011}. Yet, we show that when the Taylor principle is not satisfied the unique solution becomes unbounded, turning into an explosive hyperinflation path. This generalizes \cite{Woodford2019}'s result of instability under an interest-rate peg.
+
+What happens when the Taylor principle is not satisfied is therefore the same---an inflation spiral---as in models with purely backward-looking expectations such as models of adaptive learning \citep{BullardMitra2002,EvansHonkapohja2003, Preston2005}.\footnote{In the models of \cite{BullardMitra2002} and \cite{Preston2005} which feature decreasing-gain learning, respecting the Taylor principle actually also guarantees convergence to the rational expectations equilibrium. It therefore wards off both inflation spirals on the way to rational expectations, and self-fulfilling inflation once the economy has converged to rational expectations. In our set-up under constant-gain learning, respecting the Taylor principle does not make the economy converge to rational expectations and only prevent inflation spirals. \cite{OrphanidesWilliams2005} and \cite{Milani2007} highlight how constant-gain learning generates endogenous persistence in macroeconomic models and in particular ``inflation scares'' as long-run inflation expectations persistently depart from target.} Our first result shows that inflation spirals are the risk of concerns not just when expectations are purely backward-looking, but as soon as expectations are not so forward-looking that the FG puzzle obtains. The cause of the inflation spiral is a de-anchoring of inflation expectations, as long-run inflation expectations gradually diverge away from target.\footnote{By de-anchoring of inflation expectations we mean that long-run inflation expectations depart from target. A de-anchoring of inflation expectations can be understood in other ways---see e.g. \cite[][Section 2]{Kumaretal2015}, which lists five definitions.} It takes root in what \cite{Wicksell} called the \emph{cumulative process}. Under a passive monetary policy, a burst of inflation increases households' and firms' long-run inflation expectations, which decreases real rates, increases aggregate demand and further increases inflation even once the initial shock has dissipated, and so on in a snowballing spiral. This alternative risk of passive monetary policy has an intellectual history that predates risks of equilibrium indeterminacy. Beyond \cite{Wicksell}, it underlies \cite{Friedman1968}'s argument against pegging interest rates. It is also arguably closer to the main risk on central bankers' minds. And arguably many economists' minds: by \cite[][p.602]{Cochrane2011}'s assessment, \emph{``Taylor is worried about ``spirals'', not about ``determinacy''}.\footnote{Such explosive dynamics are also the dominant outcome in laboratory experiments by \cite{Assenzaetal2021} when the Taylor principle is not respected. To completely get rid of such explosive paths in their experiments, the response of policy rates to inflation need to be significantly above one-for-one. For a response only marginally above one-for-one, many participants extrapolate past trends, leading to explosive dynamics.}
+% \cite{Taylor1999}
+
+Second, we move beyond Taylor rules to show the main result of the paper. We show that, away from rational expectations, it is possible to characterize the monetary policies that keep control over inflation expectations without restricting monetary policy to a Taylor rule (Section \ref{sec_beyondtaylor}). As is well-known, this is not possible when expectations are rational and the risk of passive monetary policy consists of equilibrium indeterminacy. Monetary policy must then necessarily be implemented through some Taylor-like feedback rule. Specifying monetary policy as an exogenous path for the policy rate results in equilibrium indeterminacy just like when the Taylor principle is not satisfied. We show that in the FPH-learning economy, characterizing active monetary policy no longer requires to specify monetary policy through a feedback rule. We define an active monetary policy as one that delivers a unique bounded equilibrium where inflation returns to its target in the long run and show that there exists a large class of exogenous interest-rate paths that do so. This is summarized in Table \ref{table_sumup}.
+
+We show that the class of interest rate paths that deliver active monetary policy can be characterized as having a weighted average of present and future expected policy rates
+\begin{align}
+\sum_{n=0}^{\infty}\gamma(n) E_t(i_{t+n})\label{eq_gammaintro}
+\end{align}
+that increases sufficiently. It captures the idea that inflationary shocks must be met by interest rate hikes, either today or at some point in the future. As such, it captures an intuition similar to the one behind the Taylor principle, but without restraining monetary policy to follow a Taylor rule.
+
+We show that this characterization allows to determine how much interest rate hikes at different horizons matter for keeping control over inflation expectations. We call the weights $\gamma(n)$ in \eqref{eq_gammaintro} the relative effect of the interest rate at horizon $n$: how much it matters for bringing inflation down to target in the long run relative to a contemporaneous interest rate hike. We show that the relative effect is the highest at intermediary horizons, striking a balance between two opposite forces. First, rate hikes at very short horizons matter little for bringing inflation down because short-term interest rates have by themselves little effect on aggregate demand and therefore inflation. Second, rate hikes at very long horizons matter little for bringing inflation down because, although they can always bring down inflation, it takes much larger future hikes to re-anchor expectations once expectations have had time to drift away. The first effect is present under rational expectations but not in purely backward-looking models where aggregate demand does not depend on the entire yield curve beyond current short-term rates. This second effect exists only when inflation spirals are possible and is therefore absent under rational expectations. To capture both effect, moving beyond both rational expectations and purely backward-looking expectations is therefore necessary.
+
+The horizon of interest rate hikes that matters most for bringing inflation back to target is intermediary, long enough to affect long-term rates for several quarters but not so long that it mostly cools the economy once expectations have de-anchored much and there is much to re-anchor. In our main calibration, it is the short-term interest rate 6 quarters ahead that has the highest relative effect.
+
+The weighted average of present and future policy rates \eqref{eq_gammaintro} provides a measure of monetary tightening. We use this measure to assess when the Fed started to tighten its stance in the face of the 2021-2022 inflation surge. According to it, the Fed started to tighten in early 2021 and stabilized its stance in early 2022. This is a year ahead of what one would conclude looking at the Fed Funds rate, which was lifted off the ZLB in March 2022 and reached its peak of 5.25-5.5\% in July 2023.
+
+\begin{table}
+	\begin{center}
+		\caption{Outcome Depending on Monetary Policy}\label{table_sumup}
+		\begin{tabular}{ c|c|c }
+			& Rational Expectations & FPH-learning \\
+			\hline
+			Active Taylor Rule & Unique Bounded Inflation Path & Unique Inflation Path, Bounded \\
+			\hline
+			Passive Taylor Rule & Self-Fulfilling Inflation & Unique Inflation Path, Explosive \\
+			\hline
+			Exogenous Interest-Rate Path & Self-Fulfilling Inflation & Depends on the Interest Rate Path \\
+			\hline
+		\end{tabular}
+	\begin{minipage}[c]{6.0in}
+	\footnotesize \baselineskip=11pt \vspace{5pt}
+	\emph{Note: The table sums up when the economy has a unique bounded equilibrium, is subject to self-fulfilling inflation, or diverges into an inflation spiral, both under rational expectations and in the FPH-learning model. An active (passive) Taylor rule is one that respects (does no respect) the Taylor principle.} 
+\end{minipage}
+	\end{center}
+\end{table}
+
+Third, we consider the optimal way to deliver the necessary tightening (Section \ref{sec_optimal}).
+All the interest rate paths that deliver the same amount of monetary tightening as measured by \eqref{eq_gammaintro} bring inflation back to target in the long run. But bringing inflation back to target in the long run is only a weak normative requirement. What then is the best way to do so? Should the central bank deliver the increase in policy rates \eqref{eq_gammaintro} by increasing current policy rates today, or by planning on future higher policy rates tomorrow? To answer this question, we solve for the optimal monetary policy, both under commitment and under discretion.
+
+We characterize optimal policy through a target criterion which generalizes both the target criterion under rational expectations and the target criterion derived by \cite{MolnarSantoro2014} in a model of adaptive learning with fully backward-looking expectations. Relative to rational expectations, the target criterion now features the cost of increasing long-run expectations, which can be expressed as the cost of future higher inflation and output gaps. Relative to the case of purely backward-looking expectations the target criterion under commitment still features the need to deliver on past policy promises, since the central bank can still use its ability to commit to affect the forward-looking component of expectations. 
+
+Crucially, the optimal policy problem captures all that is relevant to determining the best way to anchor expectations. The optimal policy no longer needs to be implemented by combining the optimal interest rate path with an active feedback interest rate rule as it does under rational expectations. The risks of passive monetary policy do exist in the form of inflation spirals, but the solution to the optimal policy problem already selects an interest rate path that increases rates sufficiently to prevent such spirals.
+
+We use the characterization of optimal policy to assess how fast a central bank should increase interest rates in response to a cost-push shock. The fact that the weights $\gamma(n)$ increase after the first few quarters implies that delaying interest rates beyond the first few quarters must come with higher policy rates in the future, at a larger output cost. This can suggest that the central bank only faces a trade-off between a recession today and a bigger recession tomorrow, a trade-off on which doves and hawks should agree to prefer the former. We show however that how fast to increase policy rates strongly depends on the weight the central bank puts on output stabilization. The more weight it puts on output, the less the central bank should increase policy rates on impact. This limits the fall in output today but does not mean that the central bank engineers a larger fall in output tomorrow. Instead, it keeps rates high for longer, bringing down long-run expectations only slowly. While output is persistently lower in the process, this avoids an outright recession.
+
+Finally, we use the characterization of optimal monetary policy to look back at the Fed's response to the inflation surge of 2021-2022. The model finds that a central banker who puts a small weight on output stabilization should have raised rates much earlier than the Fed did, already in early 2021. But the model finds that a central banker with a larger weight on output stabilization should have lifted rates at about the same time as the Fed did, and should have followed a rate path close to the one the Fed implemented, albeit peaking somewhat higher at 6.25\%.
+
+This paper is related to several branches of literature. We build crucially on \citet{Woodford2019}'s model of finite planning horizons and long-term learning, following up on a recent literature that has adopted the framework. \citet{GHLS2020} show that it fits the dynamics of output and inflation very well, generating macroeconomic persistence without resorting to consumption habits or mechanical indexation. \cite{Gustetal2024} show that it also fits the dynamics of inflation expectations in the Survey of Professional Forecasters. \cite{FPHIFLAP} use it to evaluate make-up strategies.
+\citet{WoodfordXie2020} and \cite{Xie2020} use it to investigate monetary/fiscal interactions. \cite{NaXie2022} show it can explain the deviations from the uncovered interest rate parity. We use it to study how to keep control over inflation expectations.
+
+While Woodford's model is a rare example of a bounded rationality model that combines backward and forward-looking elements, its version without learning connects to other models designed to solve the FG puzzle through bounded rationality, such as \citet{Gabaix2020} and \citet{FarhiWerning2019}, or departure from common knowledge, such as \citet{AngeletosLian2018}. Because they abstract from long-term learning, these models eliminate the risk of equilibrium indeterminacy without creating a new risk of inflationary spirals. But this implies passive monetary policy presents no risk in these models.
+%\footnote{Retaining rational expectations, \cite{AngeletosLian2022} show that infinitely small frictions in social memory also get rid of equilibrium multiplicity under a passive monetary policy. Here as well, since there is no risk of inflationary spirals either, it implies that passive monetary policy presents no risk of losing control over inflation expectations.}
+
+\cite{MKNS2016} show that household heterogeneity and incomplete markets can provide an alternative solution to the FG puzzle. In these models as well, equilibrium indeterminacy disappears without the new risk of inflationary spirals appearing. But similarly, this implies that passive monetary policy presents no risk in these models. Besides, \cite{Bilbiie2020}, \cite{Werning2015} and \cite{AcharyaDogra2020} show that household heterogeneity can either attenuate or amplify the FG puzzle, depending on the cyclicality of idiosyncratic income.
+
+The idea that too passive a monetary policy can lead to snowballing dynamics dates back to \cite{Wicksell}'s argument of the cumulative process, later developed by \cite{Friedman1968}, first formalized by \cite{Howitt1992}, and studied in the least squares learning literature \citep[e.g.][]{BullardMitra2002, EvansHonkapohja2003, Preston2005}. Relative to these, we analyze inflation dynamics in a model where expectations are both forward and backward-looking, spanning all the intermediary cases between fully backward and fully forward (rational) expectations. This allows to show that inflation spirals are the risk of concern not only in models of fully backward-looking expectations, but as soon as expectations are not so forward-looking as to send the model into the FG puzzle. Allowing for partly forward-looking expectations also allows to derive the interest rate horizons that matter most to bring inflation to target in the long run. \cite{Carvalhoetal2023} and \cite{Gati2022} consider de-anchoring risks through learning models with endogenous state-dependent learning gains, a dimension the FPH-learning model abstracts from.
+
+Our results on optimal policy connect to papers that analyze monetary policy under either cognitive discounting or adaptive learning alone. On the cognitive discounting side, \cite{Nakataetal2019} and \cite{BenchimolBounader2023} analyze optimal policy in the model of \cite{Gabaix2020}.\footnote{\cite{WoodfordXie2020} mentioned above also considers optimal policy in the FPH model absent learning, i.e. when it reduces to cognitive discounting alone.} On the adaptive learning side, our results extend the ones in \cite{MolnarSantoro2014}---see also \cite{EusepiPrestonJEL,GasparSmetsVestin2010,Eusepietal_pricestability} and the references therein. This literature has emphasized that optimal policy reacts more strongly to inflation than under rational expectations when the risk of inflation spirals exists---a result that still holds in the FPH-learning model. We emphasize instead that whether to increase policy rates strongly and quickly or through a smaller but more persistent increase depends strongly on the weight put on output stabilization. \cite{Gati2022} shows that when the sensitivity of inflation expectations to realized inflation is state-dependent---a feature from which our paper abstracts---the central bank reacts aggressively when expectations de-anchor, allowing it to react less aggressively when they are anchored. \cite{Eusepietal_limits} show that learning about long-term interest rates can put constraints on the central bank's ability to use policy rates to control aggregate demand, and therefore inflation. \cite{Eusepietal_ZLB} consider optimal policy at the zero lower bound. In subsequent research, \cite{GustLopezSalido2025} study optimal policy in the FPH-learning model assuming the central bank is uncertain of the planning horizon of agents.
+
+The FPH-learning framework we consider also connects to a series of recent models that capture how imprecise memory can generate perpetual learning about the long-run, which in turn greatly helps in matching expectations in randomized experiments \citep{Afrouzietal2023,Azeredoetal2020}, expectations in surveys \citep{Sung2022}, and asset returns \cite{NagelXu2022}. While these models are not nested in the present framework, their assumptions that agents learn about the long-run with an imperfect memory shares important similarities with its assumption of constant-gain learning about the long-run. Imperfect memory offers an alternative to the typical justification for constant-gain learning---that structural changes make agents discount long-distant historical data. Long-term learning also relates to models of long-term drifts that decompose the dynamics of macroeconomic variables into a transitory cycle and a non-stationary trend, or ``shifting endpoint'' \cite[e.g.][]{KozickiTinsley2001,GSS2005sensitivity} yet interpret the movements in long-term drifts away from learning, for instance as long-term movements in the objective inflation target of the central bank.
+
+While the FPH-learning framework we consider embeds cognitive discounting and learning, there are other departures from rational expectations that it does not embed. One is diagnostic expectations \citep{Bordaloetal2018,Bordaloetal2019,Bordaloetal2020,Lhuillieretal2023}. Baseline versions of diagnostic expectations models have the property that long-term expectations coincide with rational expectations ones and as such are not prone to generating diverging inflation spirals under passive monetary policy.\footnote{See e.g. \cite{Bordaloetal2020}, p.2765.} \cite{Hadjini2022} combines \cite{Gabaix2020}'s cognitive discounting with misspecified forecasting rules. \cite{Beaudryetal2023} consider a setup where agents form expectations through level-k thinking, which they show constitutes similarly a midpoint between fully rational and fully backward-looking expectations. They show that in their setup it can be desirable for the central bank to discontinuously pivot from looking through a supply shock to responding aggressively once inflation expectations cross a threshold. The optimal policy that we derive in the FPH-learning model does not display brusque reversals resembling a pivot.\footnote{Departures from rational expectations also include ambiguity aversion, as modeled e.g. in the robust control literature \cite{Robustness}.}
+
+\section{Woodford's Boundedly-Rational New-Keynesian Model}\label{sec_model}
+To study how monetary policy can keep control over inflation expectations, we build on \cite{Woodford2019}'s model of bounded rationality. We start by laying out Woodford's model and putting it in a tractable form. Woodford's model is an generalization to bounded rationality of the canonical three-equation New-Keynesian model under rational expectations 
+\begin{align}
+y_t &= -\sigma (i_t - E_t(\pi_{t+1})) + E_t(y_{t+1}) + \nu_t^y,\label{eq_euler}\\
+\pi_t &= \kappa (y_t-y_t^e) + \beta E_t(\pi_{t+1}) + \nu_t^p,\label{eq_nkpc}\\
+i_t &= \phi_{\pi} \pi_t + \phi_y y_t.\label{eq_taylor}
+\end{align}
+where $\pi_t$ is inflation, $y_t$ is output, $y_t^e$ is efficient output which is a function of productivity, $i_t$ is the short-term policy rate, $\nu_t^y$ and $\nu_t^p$ are demand and cost-push shocks, and equations \eqref{eq_euler}-\eqref{eq_nkpc}-\eqref{eq_taylor} are the Euler equation, New-Keynesian Phillips curve, and the Taylor policy interest-rate rule.\footnote{Contrary to \cite{Woodford2019}, we specify preference demand shocks as discount factor shocks so that they appear as a time-$t$ shock only in the Euler equation. This is simply to avoid having to write the model in bloc form with $t+1$ shocks on top of $t$ shocks, a straightforward but cumbersome extension.}
+Denote it in matrix form
+\begin{equation}
+Y_t = A E_t(Y_{t+1}) +  b \nu_t,\label{eq_system_re}
+\end{equation}
+where $Y_t = (y_t,\pi_t)'$, $\nu_t = (\nu_t^y,\nu_t^p-\kappa y_t^e)$, and $A$ and $b$ are matrices given in appendix \ref{appendix_matrixexpressions}.
+
+\subsection{Finite Planning Horizons}
+Woodford's model embeds two forms of departures from rational expectations. First, firms and household are assumed to have finite planning horizons. They are assumed to perceive future shocks and to reason through their consequences on endogenous economic variables only until $h$ periods ahead. To evaluate the consequences of their choices beyond their planning horizon $h$ however, they rely on an approximate value function under which all variables that they take as exogenous, such as output and inflation, are equal to their long-run values. When finite planning horizons are the only form of bounded rationality, their long-term value functions is taken to be constant. Woodford shows that an agent with planning horizon $h$ perceives the economy to satisfy the recursion \eqref{eq_system_re} up to its planning horizon $h$, and imposes the terminal condition $Y_{t+h+1}=0$ at the end of its planning horizon. As a consequence, its perception $Y_t^h$ of output and inflation at $t$ solves
+\begin{equation}
+Y_t^h =  E_t \sum_{j=0}^h A^j b \nu_{t+j}.\label{eq_fph_indiv}
+\end{equation}
+
+Planning horizons are assumed to be distributed according to a geometric distribution, with a share $(1-\rho)\rho^h$ of households and firms having planning horizon $h$. The parameter $\rho \in [0,1)$ determines the average degree of foresight in the population. The average planning horizon is $N=\rho/(1-\rho)$. When $\rho=0$ the average planning horizon is zero. As $\rho$ tends to 1, the average planning horizon tends to infinity and the model converges to the model under rational expectations.
+
+Finite planning horizons provide a solution to the forward-guidance (FG) puzzle. The FG puzzle designates the property, found under rational expectations, that the announcement of an interest rate cut $n$ periods ahead has an effect on output and inflation that increases with the horizon $n$ of the announcement, and becomes infinitely strong as the horizon of the announcement increases. Relative to rational expectations, finite planning horizons make firms and household discount the future further, which discounts in particular the effect of announcements of future interest rate changes. This is best seen by aggregating equation \eqref{eq_fph_indiv} into the recursive equation for the aggregate economy $Y_t = (1-\rho) \rho^h Y_t^h$,
+\begin{equation}
+Y_t = \rho A E_t(Y_{t+1}) +  b \nu_t.\label{eq_system_fph}
+\end{equation}
+where $\rho$ adds extra-discounting to the rational expectations model \eqref{eq_system_re}. As such, finite planning horizons capture a departure from rational expectations shared with other solutions to the FG puzzle based on bounded rationality or departures from common knowledge, such as \cite{Gabaix2020,FarhiWerning2019,AngeletosLian2018}.\footnote{The reduced-form recursive expression \eqref{eq_system_fph} of the FPH model is essentially identical to the one in the model of cognitive discounting of \cite{Gabaix2020}, or when discounting arises from household heterogeneity \citep{Bilbiie2020,Werning2015}. The model are not fully equivalent however: the absence of solution and stronger uniqueness result of Proposition \ref{proposition_taylorprinciple_fphonly} are specific to the framework of finite planning horizons. If discounting at rate $\rho$ came from cognitive discounting as modeled in \cite{Gabaix2020}, or through household heterogeneity, the no-solution region would be replaced by an indeterminacy region, and the unique-solution region would be replaced by a unique-bounded-solution region, with still an infinity of unbounded solutions. But a unique bounded solution would exist under the exact same conditions.}
+
+\subsection{Long-Term Learning}
+Finite planning horizons can be combined with a second, distinct departure from rational expectations: long-term learning. With long-term learning, households and firms do not take their long-term value function to be constant, but adjust it to their evolving expectations of long-run inflation $\pi_{t-1}^*$ and output $y_{t-1}^*$, which they build from past realized inflation and output, according to the constant-gain updating rules\footnote{Note that we assume that all households have the same long-run expectations regardless of their planning horizons. This is in contrast to the presentation in \cite{Woodford2019}, which assumes that a household with planning horizon $h$ bases its expectations of the long run on its past nowcasts of inflation and output, which depend on its planning horizon. We make this change for two reasons. First the assumption is equally meaningful: once output and inflation are realized, households can use these realizations to form long-run expectations instead of their past nowcasts. Second, it simplifies the derivation. As we show in Appendix \ref{appendix_learningderivation}, we nevertheless fall exactly on the same aggregated model as in \cite{Woodford2019}.}
+\begin{align}
+y_{t}^{*} &= \mu y_{t-1}^{*} + (1-\mu) y_t,\label{eq_longrunexpectations_y} \\
+\pi_{t}^{*} &= \mu \pi_{t-1}^{*} + (1-\mu) \pi_t,\label{eq_longrunexpectations_pi}
+\end{align}
+where $\mu \in [0,1]$.\footnote{We index long-term expectations of inflation and output by $t-1$ to underline that they are predetermined at $t$. Indeed, long-run expectations $\pi_{t-1}^{*}$ and $y_{t-1}^{*h}$ use only past and not present realizations of inflation and output. Similarly, we index the backward-looking component $Y^b$ below with the time index $t-1$ to underline that it is a state variable. This is only a change in notations however: the variables are defined in exactly the same way as in \cite{Woodford2019}. Another notation change is that we use the AR(1) notation $\mu$ in equations \eqref{eq_longrunexpectations_y} and \eqref{eq_longrunexpectations_pi} instead of the gain notation $\gamma=1-\mu$.} Denote it in matrix form
+\begin{equation}
+Y_{t}^{*} = \mu Y_{t-1}^{*} + (1-\mu) Y_t,\label{eq_system_longtermexpectations}
+\end{equation}
+where $Y_t^{*} = (y_t^{*},\pi_t^{*})'$.
+
+Long-term learning captures a departure from rational expectations shared with the adaptive learning literature \citep{BullardMitra2002, EvansHonkapohja2003, Preston2005}. It adds a backward component to expectations that will be essential to capture de-anchoring risks. However, the combined FPH-learning model differs from usual learning models in that firms and households only form their \emph{long-run} expectations in a backward-looking manner. Up to their planing horizons, their expectations remain forward-looking---though of course affected by their expectations for the long run. Ultimately, expectations in the FPH-learning model are partly forward and partly backward. This implies that policy announcements about the future have an effect on expectations right away.
+
+A low value of $\mu$ (a high gain $1-\mu$) implies that long-run expectations react quickly and strongly to recent realizations of inflation and output. A high value of $\mu$ in contrast implies that long-run expectations drift only slowly and only as a consequence of persistent changes in realized inflation and output.\footnote{A small sensitivity of long-run inflation expectations to realized inflation is one of the several definitions of anchored expectations \citep[][Section 2]{Kumaretal2015}. In \cite{Woodford2019}'s set-up where the gain parameter is exogenous and constant, the central bank cannot improve expectations anchoring in this sense. It can improve expectations anchoring in the alternative sense that long-term inflation expectations remain close to the inflation target however.} At the limit $\mu=1$, long-run expectations are constant so they cannot de-anchor. In this case, the model reverts to the model under finite planning horizons only \eqref{eq_system_fph}.\footnote{Rigorously, at the limit $\mu=1$, inflation expectations are constant but not necessarily at the assumed stead-state. We assume they are fixed at the assumed steady-state in this case, so that the model under FPH only corresponds to the limit of the FPH-learning model at $\mu=1$.} The model assumes that $\mu$ is constant, i.e. abstracts from time variation and state dependence in the learning gain. See e.g. \cite{Milani2014}, \cite{Carvalhoetal2023} and \cite{Gati2022} for examples of models with endogenous state-dependent learning gains.
+
+\cite{Woodford2019} shows how the terminal value function of firms and households depend on long-run inflation and output expectations in the FPH-learning model. In Appendix \ref{appendix_learningderivation} we show that the FPH-learning model can be rewritten in the following way. A firm or household with planning horizon $h$ still perceives the economy to satisfy the recursion \eqref{eq_system_re} up to its planning horizon $h$, but now imposes the terminal condition $Y_{t+h+1}=Y_{t-1}^{*}$ at the end of its planning horizon. As a consequence, its perception $Y_t^h$ of output and inflation at $t$ now solves
+\begin{equation}
+Y_t^h =  E_t \sum_{j=0}^h A^j b \nu_{t+j} + A^{h+1} Y_{t-1}^{*}.\label{eq_system_fphlearning_h}
+\end{equation}
+
+\section{The Taylor Principle in the Face of Two Risks}\label{sec_taylorprinciple}
+In this section, we show that in the FPH-learning economy active monetary policy is necessary to retain control over inflation expectations, but that the risk it prevents is not self-fulfilling inflation but inflation spirals. To do so, we assume that the central bank follows the Taylor rule \eqref{eq_taylor} and characterize what type and number of equilibrium obtains depending on the reactivity of monetary policy. 
+
+Recall the classic determinacy result under rational-expectations (see Appendix \ref{appendix_taylor_re} for a proof). The rational expectations economy \eqref{eq_system_re} has a unique bounded solution if and only if both eigenvalues $\lambda_1^*(\phi)$ and $\lambda_2^*(\phi)$ of $A^{-1}$ are outside the unit circle.\footnote{We spell out the dependence of the eigenvalues $\lambda_2^*$ in $\phi=(\phi_\pi,\phi_y)$ in order to highlight that it depends on the responsiveness of monetary policy.} Since the larger root $\lambda_1^*(\phi)$ always is, this is equivalent to the smaller root $\lambda_2^*(\phi)$ being outside the unit circle, $|\lambda_2^*(\phi)|>1$. This is the case if the Taylor principle is satisfied,
+\begin{equation}
+\phi_{\pi} + \frac{1-\beta}{\kappa} \phi_y >1.\label{eq_taylorprinciple}
+\end{equation}
+When the Taylor principle is not satisfied, there is an infinity of bounded equilibria: inflation is self-fulfilling.
+
+\subsection{With Finite Planning Horizons Alone}
+We first consider the model with finite planning horizons alone, absent long-term learning. Appendix \ref{appendix_stability_fph} shows the following result.
+\begin{proposition}\label{proposition_taylorprinciple_fphonly}
+	Consider the model under finite planning horizons alone.
+	
+	Let $\lambda_2^*(\phi)$ be the smaller root of $A^{-1}$.
+	\begin{enumerate}
+		\item If $\rho<|\lambda_2^*(\phi)|$, the economy has a unique equilibrium, which is bounded. It is
+		\begin{equation}
+		Y_t = E_t \sum_{j=0}^{\infty} (\rho A)^j b \nu_{t+j}.\label{eq_system_fph_iterated}
+		\end{equation}
+		\item If $\rho>|\lambda_2^*(\phi)|$, the economy has no equilibrium for too persistent shock processes. For not too persistent shock processes, it has a unique equilibrium, which is bounded, still given by \eqref{eq_system_fph_iterated}.
+	\end{enumerate}
+\end{proposition}
+
+Proposition \ref{proposition_taylorprinciple_fphonly} shows that, relative to rational expectations, finite planning horizons modify the conditions for the existence and uniqueness of solutions in three ways. First, the uniqueness result is stronger. When a unique solution exists, it is unique in the strong sense of being unique among all possible solutions---not just unique among bounded solutions, coexisting with an infinity of unbounded solutions. This bypasses the need to justify a focus on bounded solutions at the exclusion of unbounded solutions \citep{Cochrane2011}. The stronger uniqueness result takes root in the assumption that all agents assume that the economy will be back to steady-state in finite time (although they differ as to when). As a result, each agent's expectations---and therefore each agent's current action---have a unique solution that can be solved by finite backward induction. Aggregating across households with different planning horizons, this gives a unique solution. Importantly, the unique aggregate solution does not in general revert to steady-state in finite time.
+
+Second, equilibrium indeterminacy is no longer an issue. The possible issue if $\rho>|\lambda_2^*(\phi)|$ is instead an absence of solution. This point may be counter-intuitive at first. Indeed, if we consider the reduced-form recursive representation of the economy \eqref{eq_system_fph} and apply standard Blanchard-Kahn arithmetic, it is easy to show that for $\rho>|\lambda_2^*(\phi)|$ equation \eqref{eq_system_fph} has an infinity of bounded solutions. And in the particular case of rational expectations $\rho=1$, the reduced-form \eqref{eq_system_fph} sums up the economy entirely, so that the classical indeterminacy result obtains. But for $\rho<1$ the FPH economy is more than the reduced-form \eqref{eq_system_fph}. Given a solution to equations \eqref{eq_system_fph}, we need to see if we can reconstruct beliefs for all individual households (each with its own planning horizon) such that taken together they aggregate to the solution to \eqref{eq_system_fph}. For all the non-fundamental solutions to \eqref{eq_system_fph}, we cannot. Intuitively, all these non-fundamental solutions include sunspot shocks that need to slowly die over time, never completely reaching zero. This cannot be replicated through an aggregation of agents' individual beliefs, under which the economy is back to steady-state in finite time.
+
+As a consequence, even when $\rho>|\lambda_2^*(\phi)|$ a solution is necessarily unique---provided it exists. Yet a solution may not exist if the shock processes are too persistent. This is because when $\rho>|\lambda_2^*(\phi)|$, expectations of future demand and supply shocks have all the stronger an effect that they occur in the more distant future---a peculiar property reminiscent of the forward-guidance puzzle. As a result, when shocks are persistent, agents with long planning horizons expect very strong reactions of inflation and output, and make very strong consumption and pricing decisions themselves. For too persistent shocks, the aggregation of individual decisions diverges: there is no equilibrium. Even when shocks are not too persistent and a unique solution exists, it is still a peculiar solution that is subject to the forward-guidance puzzle.
+
+Third and most importantly, the condition for guaranteeing a unique solution becomes easier and easier to satisfy as $\rho$ decreases below one---i.e. as the average planning horizon of agents decreases. The left panel of Figure \ref{fig_taylordiagram} illustrates the weakened requirement graphically. It represents the region where a solution can fail to obtain (for too persistent shock processes) and the region where there always exists a unique solution as a function of the strength of the feedback in the Taylor rule $\phi_{\pi}+\frac{1-\beta}{\kappa} \phi_y$ on the x-axis, and of the degree of cognitive discounting $\rho$ on the y-axis. As $\rho$ decreases, a unique solution always obtains for lower and lower values of $\phi_{\pi}$ and $\phi_y$, putting a less demanding requirement on the responsiveness of monetary policy than under rational expectations. Appendix \ref{appendix_stability_fph} shows that for $\rho$ below the threshold
+\begin{equation}
+\rho^* = \lambda_2^*(0) = \frac{1+\sigma \kappa+\beta - \sqrt{(1+\sigma \kappa+\beta)^2-4\beta}}{2\beta},\label{eq_threshold}
+\end{equation}
+there always exists a unique equilibrium even under a fully unresponsive monetary policy $\phi_{\pi}=\phi_y=0$---an interest rate peg.
+For a standard calibration of the structural parameters $\beta = 0.999$, $\sigma = 0.5$, $\kappa = 0.05$, the threshold value is $\rho^*=0.85$.
+
+That not even a weakened version of the Taylor principle is necessary to ensure a unique solution when $\rho<\rho^*$ questions the practical relevance of the Taylor principle in keeping control over inflation expectations. All the more so that the threshold $\rho^*$ below which a unique solution always obtains even under a fully passive monetary policy is the exact same threshold below which the model is not subject to the FG puzzle (see e.g. \cite{FPHIFLAP} for a proof). Finite planning horizons solve the FG puzzle, but taken alone they suggest monetary policy does not need to worry about losing control over inflation expectations.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=1\textwidth]{figures/taylordiagram.pdf}
+	\caption{Existence of Solutions in the FPH-Learning New-Keynesian Economy}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The diagrams represent the existence, uniqueness and nature (bounded or unbounded) of equilibria as a function of the degree of bounded-rationality discounting $\rho$ and the strength of the response in the Taylor rule $\phi_{\pi}+\frac{1-\beta}{\kappa} \phi_y$, both in the case without (left panel) and with (right panel) long-term learning. On both panels, the frontier of the top-left region plotted in bold is the one for $\phi_y=0$, which is the one for which the top-left region is the largest. In dashed lines are the frontiers for higher values of $\phi_y=0.1,0.2$. The shaded region represents the calibrations under which the model is subject to the FG puzzle: for $\rho> \lambda_2^*(0)=\rho^*$.} 
+	\end{minipage}
+	\label{fig_taylordiagram}
+\end{figure}
+
+\subsection{With Finite Planning Horizons and Long-Term Learning}
+We now show that the risk of losing control over inflation expectations resurfaces in the model with long-term learning. Crucially though, it resurfaces under a different form: inflation spirals. This risk, which is arguably more present on central bankers' mind, is distinct from the risk of indeterminate inflation. With an inflation spiral, the risk is instead that inflation become very determinate in a very undesirable direction. Appendix \ref{appendix_taylorprinciple} shows the following result.
+
+\begin{proposition}\label{proposition_taylorprinciple}
+	Consider the economy with both finite planning horizons and long-term learning ($\mu<1$).
+\begin{enumerate}
+	\item If $\rho<|\lambda_2^*(\phi)|$, the economy has a unique equilibrium, defined by \eqref{eq_system_longtermexpectations} and
+	\begin{equation}
+	Y_t = E_t \sum_{j=0}^{\infty} (\rho A)^j b \nu_{t+j}+ (I-\rho A)^{-1} (1-\rho) A Y_{t-1}^{*}.\label{eq_system_fphlearning}
+	\end{equation}
+\begin{enumerate}
+	\item If the Taylor principle \eqref{eq_taylorprinciple} is satisfied, then the unique equilibrium is bounded.
+	\item If the Taylor principle \eqref{eq_taylorprinciple} is not satisfied, then the unique equilibrium is unbounded and explosive.	
+\end{enumerate}
+\item If $\rho>|\lambda_2^*(\phi)|$, the economy has no equilibrium for too persistent shock processes. For not too persistent shock processes, it has a unique equilibrium, which is bounded, given by \eqref{eq_system_fphlearning}.
+\end{enumerate}
+\end{proposition}
+% on mu=1 particular case: "This corresponds to the particular case $\mu=1$ where long-run expectations always remain on target."; well...
+
+The right panel of Figure \ref{fig_taylordiagram} gives a graphical illustration of Proposition \ref{proposition_taylorprinciple}. As in the absence of long-term learning in Proposition \ref{proposition_taylorprinciple_fphonly}, the model has either a unique solution or fails to have a solution for too persistent shock processes. But when the Taylor principle is not satisfied the unique solution is now unbounded. The economy necessarily falls into an explosive inflationary (or deflationary) spiral, as expectations spiral out of control. The risk of self-fulfilling inflation has been pushed out the door, but it comes back through the window in the form of inflationary spirals.
+
+What makes the equilibrium inherently unstable under passive monetary policy? The economic mechanism is the same one as in models with purely backward-looking expectations, underlying Wicksell's \emph{cumulative process} and \cite{Friedman1968}'s argument against interest rate pegs, and analyzed in \cite{Howitt1992} and in the adaptive learning literature \citep[e.g.][]{BullardMitra2002, EvansHonkapohja2003, Preston2005}.\footnote{In the adaptive learning literature, when learning is done with a decreasing gain the Taylor principle not only prevents the cumulative process but also guarantees convergence to the rational expectations equilibrium, a stronger stability result. When learning is done with a constant gain, there is no exact convergence to rational expectations. On the stronger requirements for stability brought by a constant gain under adaptive learning, see e.g. \cite{EvansHonkapohja2009}.} It is illustrated through the thick black line of Figure \ref{fig_hiketime}. The figure considers what happens to the economy when a transitory cost-push shock (say) hits the economy, assuming monetary policy is fully unresponsive $\phi=0$ and never moves interest rates. The transitory shock pushes inflation up, which increases long-term inflation expectations and therefore all inflation expectations. Although the shock then dissipates, households' inflation expectations are now higher, which---absent a strong enough reaction from monetary policy---decreases ex ante perceived real rates. This increases aggregate demand, which increases inflation further, and so on, in a self-feeding spiral. Inflation slowly but inexorably drifts up.
+
+Formally, while the problem of indeterminacy under rational expectations was that the economy had more roots inside the unit circle (one) than it had state variables (none), the problem is now that the economy has fewer roots inside the unit circle (one) than it has state variables (two). One root is greater than one but is associated to a state variable, making the dynamics of the economy explosive.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{figures/hiketime.pdf}
+	\caption{Hiking Now vs. Hiking Tomorrow}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The figure gives the response of the economy to a transitory cost-push shock in period 0 under various responses of monetary policy. On the thick black line the central bank does not react at any horizon ($\phi=0$ in Section \ref{sec_taylorprinciple}). On the thin blue curves the central bank responds by increasing its policy rate in a single period, by the amount just necessary to bring the economy back to its stable trajectory (Section \ref{sec_beyondtaylor}). The parameter values are the posterior means from the estimation of the model in Table \ref{table_estimation}.}
+	\end{minipage}
+	\label{fig_hiketime}
+\end{figure}
+
+Proposition \ref{proposition_taylorprinciple} captures the logic of the cumulative process within a model that has both a backward-looking learning component, and a forward-looking component. It shows that active monetary policy prevents inflation spirals not just in models with purely backward-looking expectations but also when expectations are partly forward-looking---albeit not so forward-looking that they send the model into the FG puzzle as under rational expectations.
+
+The solution \eqref{eq_system_longtermexpectations}-\eqref{eq_system_fphlearning} can be put in standard recursive form. Defining
+\begin{align}
+Y^b_{t-1} &=(I-\rho A)^{-1}(1-\rho)A Y_{t-1}^*,\label{eq_defYb}\\
+Y^f_t &= Y_t - Y^b_{t-1} \label{eq_defYf},
+\end{align}
+the backward-looking and forward-looking components of $Y_t$, \footnote{For readability, we use the notations $Y^f_t$ and $Y^b_{t-1}$ instead of $\tilde{Y}_t$ and $\bar{Y}_{t-1}$ in \cite{Woodford2019}.} the FPH-learning economy can be written as
+\begin{align}
+Y^f_t &= (\rho A) E_t(Y^f_{t+1}) + b \nu_t,\label{eq_system1}\\
+Y^b_t &= \bigg(\mu I + (1-\mu) (I-\rho A)^{-1}(1-\rho)A\bigg) Y^b_{t-1} + \bigg((1-\mu) (I-\rho A)^{-1}(1-\rho)A\bigg) Y^f_t.\label{eq_system2}
+\end{align}
+
+\subsection{Estimation}\label{sec_estimation}
+To assess the empirically relevant values of the expectations parameters $\rho$ and $\mu$---and later on to speak to the recent inflation surge---we estimate the model. Our estimation relies on quarterly data from 1984. We deliberately start the sample at the Great Moderation since the learning gain may have been different during the stagflation of the 1970s.
+
+Given the importance of long-term expectations in the model, we want to make sure the estimation does a good job at matching long-term expectations in survey data. To do so, we estimate the model in two steps. In the first step, we estimate the parameter $\mu$ through simple OLS from equation \eqref{eq_longrunexpectations_pi} and
+\begin{align}
+F_t^{5y, data} &= 4\pi_{t-1}^*+\bar{\pi}^{E,5y},\label{eq_michigan5y}
+\end{align}
+with two series only: inflation (of the GDP deflator) and average five-year-ahead inflation expectations in the Michigan survey of consumers, over 1984-2024. In doing so, we assimilate five-year-ahead inflation expectations to the long-term inflation expectations $\pi^*$ of the model, a very good approximation at such a long horizon. The estimated constant $\bar{\pi}^{E,5y}$ absorbs the well-documented upward bias in households' inflation expectations. We estimate $\bar{\pi}^{E,5y}=3.22\%$, i.e. an upward bias of 1.22 percentage point above a 2\% inflation target. We estimate $\mu=0.958$, corresponding to a learning gain of 0.042. The fit of the 5-year-ahead Michigan expectations in this first step is given in Figure \ref{fig_fit_first_step}. Our estimated gain of 0.042 is lower than the gain of $0.14$ estimated in \cite{GHLS2020}, who estimate the FPH-learning model as a whole and without expectation survey data over 1966-2007. Our estimated gain of 0.042 is however at the upper end of typical estimates of time-invariant learning gains in the literature.\footnote{Models with state-dependent learning gains can of course find larger gains in their high-gain regimes. \cite{Milani2014} finds a high constant gain of 0.082. \cite{Carvalhoetal2023} find a high constant gain of 0.145 in the 1970-1990s but a decreasing gain in recent years.} \cite{Milani2007} and \cite{OrphanidesWilliams2005activist} find lower gains of 0.02, and \cite{Nagel2024} of 0.016. Relative to these estimates, our assessment of optimal monetary policy in Section \ref{sec_optimal} will therefore embed the assumption that inflation expectations were rather sensitive to realized inflation when the inflationary shocks of 2021-2022 hit the US economy. 
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/fit_first_step.pdf}
+	\caption{Fit of Estimating $\mu$ on 5-year-ahead Michigan Expectations}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+			\emph{Note: The figure plots how the first step of the estimation fits the average five-year-ahead inflation expectations in the Michigan survey of consumers after estimating $\mu$ and $\bar{\pi}^{E,5y}$ through equations \eqref{eq_longrunexpectations_pi} and \eqref{eq_michigan5y}.} 
+	\end{minipage}
+	\label{fig_fit_first_step}
+\end{figure}
+
+In the second step, we estimate all the other parameters through Bayesian methods over the sample 1984-2007 using as observables the CBO series for the output gap $y_t^{data}$, inflation $\pi_t^{data}$, the Fed Funds rate $i_t^{data}$, and the average one-year-ahead and five-year-ahead inflation expectations in the Michigan survey of consumers $F_t^{1y, data}$ and $F_t^{5y, data}$. We end the estimation sample in 2007 to avoid the zero lower bound. We use the CBO series for the output gap to avoid finding a large negative output gap in the 2020s. This would give a dovish bias to our assessment of optimal monetary policy in Section \ref{sec_optimal}. Using the CBO series matters little for the values of the estimated parameters however. The estimation results are very similar when we use as observable the growth rate of output per capita, as shown in Appendix \ref{appendix_estimationoutputgrowth}. Appendix \ref{appendix_forecasts} derives the expression for the average inflation expectation $F_t(\pi_{t+k})$ in the model. The observation equations are
+\begin{align}
+y_t^{data} &= y_t,\label{eq_obsy}\\
+\pi_t^{data} &= 4 \pi_t + \bar{\pi},\\
+i_t^{data} &= 4 i_t + \bar{r} + \bar{\pi},\\
+F_t^{1y, data} &= \sum_{i=1}^4 F_t(\pi_{t+i})+\bar{\pi}^{E,1y},\\
+F_t^{5y, data} &= \sum_{i=1}^{20} F_t(\pi_{t+i})+\bar{\pi}^{E,5y},
+\end{align}
+where $\bar{\pi}$, $\bar{r}$, and $\bar{\pi}^{E,1y}$ are constants. We calibrate $\bar{\pi}=2\%$ and $\bar{r}=0.5\%$ and estimate $\bar{\pi}^{E,1y}$ along with the other parameters.\footnote{The discount parameter $\beta$ is tied to $\bar{r}$ through $\beta = 1/(1+\bar{r}/400)$.} For the estimation, we add a monetary policy shock $\nu_i$ to equation \eqref{eq_taylor} and assume that all three shocks $\nu_y$, $\nu_p$, $\nu_i$ follow AR(1) processes. We also add measurement errors to inflation expectations, which we assume are iid.
+
+The leftmost columns of Table \ref{table_estimation} give the priors we use in the estimation. The rightmost columns provide the posterior distributions. Results are overall close to the ones reported in \cite{GHLS2020}. Of particular interest is the value of the new expectations parameter $\rho$. We estimate a posterior mean of $\rho=0.57$, corresponding to an average planning horizon of about 1.3 quarters.\footnote{Given the assumption of a geometric distribution of planning horizons, the average planning horizon is $\rho/(1-\rho).$} This is close to the value $\rho=0.50$ estimated in \cite{GHLS2020}. For the estimated parameter values, the threshold value for being subject to the forward guidance puzzle is $\rho^*=0.69$, above the estimated value of $\rho=0.57$.
+
+\renewcommand{\arraystretch}{1}
+
+\begin{table}
+	\caption{Prior and Posterior Distributions of Parameters}
+	\begin{center}
+\begin{tabularx}{0.8\textwidth}{llccccc} 
+\hline 
+Parameter& \multicolumn{3}{c}{Prior Distribution} & \multicolumn{3}{c}{Posterior Distribution} \\ 
+& Distribution &Parameter 1& Parameter 2& Mode & Mean & St. Dev.\\ 
+\hline 
+$\bar{\pi}^{E,1y}      $ & Normal                                                       & 2.00& 1.00& 3.10& 3.13& 0.08  \\ 
+$\sigma                $ & Gamma                                                        & 2.00& 0.50& 2.90& 3.26& 0.54  \\ 
+$\kappa                $ & Gamma                                                        & 0.05& 0.10& 0.03& 0.04& 0.02  \\ 
+$\phi_\pi              $ & Gamma                                                        & 1.50& 0.10& 1.43& 1.44& 0.10  \\ 
+$\phi_y                $ & Gamma                                                        & 0.25& 0.25& 1.00& 1.02& 0.25  \\ 
+$\rho                  $ & Uniform                                                      & 0.00& 1.00& 0.67& 0.57& 0.11  \\ 
+$\rho_\xi              $ & Beta                                                         & 0.50& 0.10& 0.93& 0.92& 0.02  \\ 
+$\rho_i                $ & Beta                                                         & 0.50& 0.10& 0.90& 0.89& 0.02  \\ 
+$\rho_p                $ & Beta                                                         & 0.50& 0.10& 0.47& 0.50& 0.08  \\ 
+$\sigma_\xi            $ & InvGamma                                                     & 1.00& 4.00& 0.49& 0.57& 0.09  \\ 
+$\sigma_i              $ & InvGamma                                                     & 1.00& 4.00& 0.50& 0.52& 0.11  \\ 
+$\sigma_p              $ & InvGamma                                                     & 1.00& 4.00& 0.14& 0.14& 0.01  \\ 
+$\sigma_e              $ & InvGamma                                                     & 1.00& 4.00& 0.46& 0.48& 0.04  \\ 
+\hline 
+\end{tabularx}
+		\begin{minipage}[c]{6.0in}
+			\footnotesize \baselineskip=11pt \vspace{5pt} 
+			\emph{Note:} The table gives the prior and posterior distributions of the model's parameters. The model is quarterly. The parameters Par(1) and Par(2) refer to: the mean and standard deviation for the Normal, Beta, and Gamma distributions; the lower and upper bounds of the support for the Uniform distributions; the shape and scale parameters for the Inverse Gamma distributions.
+		\end{minipage}	
+	\end{center}
+	\label{table_estimation}
+\end{table}
+
+\section{Beyond Taylor Rules}\label{sec_beyondtaylor}
+We now move beyond Taylor rules to show the main result of the paper. We show that in the FPH-learning economy, following an interest rate feedback rule is no longer necessary to keep control over inflation expectations, in contrast to rational expectations. We show that it is possible instead to specify monetary policy as an exogenous path for the interest rate and we characterize all the interest rate paths that bring inflation back to target in the long run. We show that this characterization allows to determine how powerful interest rate hikes of different horizons are at bringing inflation expectations back to target. We use this characterization to assess whether, at any point in time, the Fed was doing enough to counter the inflation surge of 2021-2022.
+
+\subsection{All the Interest Rate Paths that Bring Back Inflation to Target}
+When restricting monetary policy to the Taylor rule \eqref{eq_taylor}, keeping control over inflation expectations requires to respect the Taylor principle \eqref{eq_taylorprinciple}. But is following a Taylor rule necessary to keep control over inflation expectations? It is under rational expectations. Interest-rate policy must be specified as a feedback rule---a Taylor rule of some form---lest indeterminacy ensues \citep{McCallum1981}. We show that in the FPH-learning economy when $\rho<\rho^*$ so that it is not subject to the FG puzzle, it is not.
+
+We assume that monetary policy is no longer set as the Taylor feedback rule \eqref{eq_taylor}, but as an exogenous interest rate path $(i_{t+n}(\nu))_{n\geq0}$. The interest-rate path is exogenous in that it is not specified as a function of endogenous variables such as inflation and output today or tomorrow $(y_{t+n}, \pi_{t+n})_{n\geq0}$. But it can be a function of the exogenous process $\nu$, something we highlight through the notation $i_t(\nu)$.\footnote{Our specification of monetary policy is similar to the one advocated by \cite{BeaudryPortierPreston2023} as an alternative to Taylor rules. Relative to them, we allow monetary policy to adjust its entire future expected path for the policy rate in response to changes in fundamentals.} It can also depend on the lagged endogenous states $(y^b_{t-1}, \pi^b_{t-1})$ at $t$, since they are predetermined at $t$. What we exclude is a dependence on current and future inflation and output, i.e. the one dependence that is critical to ensure determinacy under rational expectations, by stipulating a response of monetary policy off the equilibrium path.\footnote{Our point is not to dismiss feedback rules which can have the benefit of simplicity and robustness. Instead, the point is that implementability is no longer an issue away from rational expectations, so that a comparison of various policies within a given model can be done without the need to restrict to a class of policies.}
+
+By a straightforward extension of equation \eqref{eq_system_fphlearning}, the economy still has a unique equilibrium, defined by \eqref{eq_system_longtermexpectations} and
+\begin{equation}
+Y_t = E_t \sum_{j=0}^{\infty} (\rho A_0)^j \bigg(b_0 \nu_{t+j} \textcolor{red}{- b_0^i i_{t+j}(\nu)} \bigg) + (I-\rho A_0)^{-1} (1-\rho) A_0 Y_{t-1}^{*}.\label{eq_system_fphlearning_i}
+\end{equation}
+where $A_0$ and $b_0$ denote the matrices $A$ and $b$ for $\phi_{\pi}=\phi_y=0$ and the expression of the matrix $b_0^i$ is given in appendix \ref{appendix_matrixexpressions}.
+
+We want to characterize all the interest rate paths $(i_{t+n}(\nu))_{n\geq0}$ for which the equilibrium is unique and bounded, and inflation returns to its target in the long run. Most interest-rate paths fail to do so. For instance, if the nominal interest rate is kept constant at all times---an interest rate peg---the unique equilibrium is unbounded and explosive since it is a particular case of Proposition \ref{proposition_taylorprinciple} for $\phi_{\pi}=\phi_y=0$. But some interest rate paths avoid an inflation spiral and bring back inflation to target. These interest rate paths are characterized in the following proposition, shown in Appendix \ref{appendix_anchoringpaths}.
+
+\begin{proposition}\label{proposition_anchoringpaths}
+	~\\
+Assume $\rho<\rho^*$. %and the exogenous shocks converge back to steady-state in expectations $\lim_{k \rightarrow \infty} E_t(\nu_{t+k})=0$.
+The unique equilibrium of the FPH-learning economy is bounded and returns to steady-state in the long run if and only if:
+\begin{enumerate}[label=(\roman*)]
+\item The interest rate path converges back to steady-state in expectations $\lim_{n \rightarrow \infty} E_t(i_{t+n}(\nu))=0$.
+\item The following condition is satisfied
+\begin{align}
+z^b_{2,t-1} + \left(1-\frac{\mu}{\lambda^b_2(0)}\right) \left(
+\sum_{n=0}^{\infty} \gamma(n) E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu)) \right) = 0,\label{eq_condition_anchoringpaths}
+\end{align}
+where $z^b_{2,t} = e_2' Y^b_{t-1}$ for $e_2'$ the left eigenvector associated to the root $\lambda^*_2(0)<1$ of $A_0^{-1}$,
+\begin{align}
+\gamma(n) &= \frac{\left(\frac{1}{\lambda^f_2(0)}\right)^{n+1} - \left(\frac{1}{\lambda^b_2(0)}\right)^{n+1}}
+{\frac{1}{\lambda^f_2(0)}-\frac{1}{\lambda^b_2(0)}},
+\end{align}
+$v_t$ is a function of the shocks $\nu_t$ and $c^i_2$ a constant given in appendix \ref{appendix_anchoringpaths}.
+\end{enumerate}
+\end{proposition}
+
+Proposition \ref{proposition_anchoringpaths} captures the following intuition. The explosive nature of the economy absent a response of monetary policy arises because it has two state variables $y_{t-1}^*$ and $\pi_{t-1}^*$ for only one root inside the unit circle. The other root, $\lambda^b_2(0)$, is greater than one, giving the economy its tendency to explode into hyperinflation (or hyperdeflation) when left to itself. The variable $z^b_{2,t}$ in Proposition \ref{proposition_anchoringpaths} is the eigenvector associated to this explosive root. To make the economy return to steady-state in the long-run, $z^b_{2,t}$ must be made to return to steady-state in the long run.
+
+Condition \eqref{eq_condition_anchoringpaths} characterizes which paths of policy rates guarantee that $z^b_{2,t}$ return to steady-state in the long run. To understand it, note that, as shown in Appendix \ref{appendix_anchoringpaths}, the expected value of $z_{2}^b$ at $t+k$ can be expressed as
+\begin{align}
+E_t(z_{2,t+k}^b) = \lambda^b_2(0)^{k+1} \left(z^b_{2,t-1} + \left(1-\frac{\mu}{\lambda^b_2(0)}\right) \left(
+\sum_{n=0}^\infty \gamma(n) E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu))\right)\right) + o_{k\rightarrow \infty}(1).\label{eq_z2expression_text}
+\end{align}
+Up to a term that becomes negligible in the long run, $E_t(z_{2,t+k}^b)$ depends on its current inherited value $z^b_{2,t-1}$ (how much expectations have already de-anchored), on future expected shocks, and on the future expected path of interest rates. Specifically, it is equal to the term in condition \eqref{eq_condition_anchoringpaths}, multiplied by the explosive factor $\lambda^b_2(0)^{k+1}$. The explosive factor is the manifestation of the cumulative process. Because the root $\lambda^b_2(0)$ is larger than 1, the FPH-learning economy is inherently unstable, letting small inflationary pressures---an inflationary shock, or long-run expectations that are not equal to their steady-state value $z^b_{2,t-1} \neq 0$---snowball into more and more inflation. For the economy to return to steady-state the term in condition \eqref{eq_condition_anchoringpaths} must therefore remain equal to zero.
+
+The term in condition \eqref{eq_condition_anchoringpaths} captures the inflationary forces hitting the economy: present and future shocks $E_t(v_{2,t+n})$ and how much expectations have already de-anchored $z^b_{2,t-1}$. But because it also depends on the future path of interest rates, condition \eqref{eq_condition_anchoringpaths} captures the idea that a sufficiently restrictive monetary policy can counter inflationary forces and bring inflation back to target. The idea that sufficiently strong interest rates hikes are necessary to stabilize inflation expectations captures an intuition similar to the Taylor principle when monetary policy is restricted to a Taylor rule. Yet Proposition \ref{proposition_anchoringpaths} characterizes what interest rate hikes are necessary without first restraining monetary policy to a given class of interest rate rules. 
+
+The countering effect of monetary policy is captured through the weighted average of present and future policy rates
+\begin{equation}
+E_t\left(\sum_{n=0}^{\infty} \gamma(n) i_{t+n}(\nu)\right).\label{eq_tighteningeffect}
+\end{equation}
+Monetary tightening can come from higher interest rate either now or in the future, but the size of the necessary increase in rates is different depending on when it occurs. How much an increase in the interest rate $i_{t+n}$ at horizon $n$ matters is captured by the weights $\gamma(n)$. The weights $\gamma(n)$ allow to capture the horizon of interest rate hikes that matter most for bringing inflation back to target. Before analyzing these weights in more details we first argue that Taylor rules and the Taylor principle provide little guidance on the issue of what horizon of interest rate hikes matters for bringing inflation back to target.
+
+\subsection{What Horizons of Rates Matter? The Limited Guidance of Taylor Rules}
+During the 2021-2022 inflation surge, several central bankers and outside observers use Taylor rule benchmarks to assess whether the Federal Reserve and other central banks were lagging behind the curve in their response to inflation.\footnote{Examples of policy-makers and commentators using Taylor rules to make the case that the Fed was lagging behind include for instance \cite{Bullard} and \cite{BuiterSibert}. Both use a Taylor rule with no inertia.} Because a Taylor rule that respects the Taylor principle wards off self-fulfilling inflation under rational expectations, assessing whether a central bank respects the Taylor principle can appear as a good test of whether a central bank is doing enough to keep control over inflation expectations. 
+
+As far as ensuring equilibrium determinacy is concerned however, Taylor rules provide little practical guidance on how fast interest rates need to increase. This is because two interest-rate feedback rules that both guarantee determinacy can give very different recommendations as to how fast to increase rates. In particular, while in Section \ref{sec_taylorprinciple} we considered a simple Taylor rule \eqref{eq_taylor} that responds to current inflation and output only, in applied work Taylor rules typically include interest-rate inertia
+\begin{equation}
+i_t = \rho_T i_{t-1} + (1-\rho_T) ( i^* + \phi_{\pi} (\pi_t-\pi^*) + \phi_x x_t ).\label{eq_taylorruleinertia}
+\end{equation}
+In rule \eqref{eq_taylorruleinertia}, the policy rate responds to deviations of year-on-year inflation $\pi_t$ from the inflation target $\pi^*$ and to the output gap $x_t$, with inertia captured by the coefficient $\rho_T$ on the lagged policy rate $i_{t-1}$. Large enough values of the coefficients $\phi_{\pi}$ and $\phi_x$ still guarantees determinacy in standard New-Keynesian models, but crucially do so for all values of $\rho_T$ between 0 and 1. Intuitively, the Taylor principle says that to guarantee determinacy interest rates must increase at some point, but it is indifferent as to whether it comes from higher short-term rates now, or from expectations of higher interest rates in the future.
+
+As a result, a central bank seeking to ensure equilibrium determinacy has an infinity of Taylor rules to choose from, with widely different recommendations as to the timing and size of interest-rate hikes. To illustrate this, Figure \ref{fig_taylorinertia} plots the policy rate paths that the rule \eqref{eq_taylorruleinertia} would have recommended the Fed to follow in February 2022, right before the Fed's first interest-rate hike of March 2022, setting the coefficients $\phi_{\pi}$ and $\phi_x$ to standard values that guarantee equilibrium determinacy, but varying the inertia coefficient $\rho_T$ to 0, 0.85 and 0.95. While all three rules prevent equilibrium indeterminacy, they offer widely different recommendations as to how fast to raise interest rates.\footnote{Of course, the recommendations of different Taylor rules can be evaluated and compared through a loss function. We will precisely turn to evaluating policies using the central bank's loss function in Section \ref{sec_optimal}, but without restricting policy to belong to a particular class.}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/graph2_TR_US_22Q1_PCEC_ugap.pdf}
+	\caption{Interest Rate Paths Recommended by Various Taylor Rules in February 2022}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The three interest rate paths correspond to the paths that the Taylor rule \eqref{eq_taylorruleinertia} would have recommended for the Fed to follow in February 2022, for $\phi_{\pi}=1.5$, $\phi_x = 0.5$ and various calibrations of the inertia parameter $\rho_T$. The forecasted paths for the nominal interest rate are calculated using the SPF median expectation for the path of inflation and unemployment in February 2022. The steady-state nominal rate $i^*$ is taken to be 1.8\% (a real rate of -0.2\%), its average from 2000 to 2019. Inflation $\pi_t$ is taken to be year-on-year PCE core inflation, and the inflation target $\pi^*= 2\%$. The output gap is proxied with (minus) twice the unemployment gap, in accordance with an Okun's coefficient of 2. The unemployment gap is calculated as the difference between the SPF median expectation of the unemployment rate and the CBO expectation of the natural rate of unemployment.} 
+	\end{minipage}
+	\label{fig_taylorinertia}
+\end{figure}
+
+Ultimately, results on Taylor rules under rational expectations are silent as to what maturities of interest rates are most relevant to assess whether a central bank is doing enough to keep control over inflation expectations.\footnote{This question was heavily debated during the 2021-2022 inflation surge. For instance, on April 5, 2022, Larry Summers argued against Paul Krugman's argument that \emph{``only future rates are relevant to spending''}, reminding the \emph{``decades-long tradition of using real Treasury bill or Fed Fund rates to index monetary policy''} \citep{Summers2022}.} We now show that the FPH-learning model provides a response to this question.
+
+\subsection{The Relative Effect of Interest Rates of Different Horizons}
+In the measure of monetary tightening \eqref{eq_tighteningeffect}, the weights $\gamma(n)$ determine how much each horizon of the yield curve matters is delivering a given amount of tightening. We call $\gamma(n)$ the relative effect of $i_{t+n}$.
+
+\begin{definition}\label{def_relativeanchoringeffect}
+We call the weight $\gamma(n)$ the relative effect of interest rate $i_{t+n}$ at horizon $n$,
+\begin{equation}
+\gamma(n) = \frac{\left(\frac{1}{\lambda^f_2(0)}\right)^{n+1} - \left(\frac{1}{\lambda^b_2(0)}\right)^{n+1}}
+{\frac{1}{\lambda^f_2(0)}-\frac{1}{\lambda^b_2(0)}}.
+\end{equation}
+It is equal to the effect $i_{t+n}$ on $E_t(z_{2,t+k})$ relative to the effect of the current interest rate $i_t$, for all $k\geq n$,
+\begin{equation}
+\gamma(n) = \frac{\left(\frac{\partial E_t(z_{2,t+k})}{\partial i_{t+n}}\right)}{\left(\frac{\partial E_t(z_{2,t+k})}{\partial i_{t}}\right)}.\label{eq_gammadefinition}
+\end{equation}
+\end{definition}
+We call $\gamma(n)$ the \emph{relative} effect of $i_{t+n}$ because it is defined relative to the effect of the current policy rate $i_t$.
+Accordingly and by construction, $\gamma(0)=1$. Note that the relative effect of $i_{t+n}$ on $z^b_{2,t+k}$ does not depend on the horizon $k$ for $k\geq n$. This is because past $t+n$, the effect of $i_{t+n}$ only manifests itself through the effect it left on the state at $t+n$, $z^b_{2,t+n}$. Beyond that date, any departure of $z^b_{2,t+n}$ from zero diverges exponentially with $k$ at the rate of the explosive root $\lambda^b_2(0)>1$. Because this rate of divergence is the same for the effect of $i_{t+n}$ and the effect of the contemporary policy rate $i_t$, the divergence at rate $\lambda^b_2(0)$ cancels out in the relative effect \eqref{eq_gammadefinition}.
+
+Figure \ref{fig_relativeanchoringeffect} plots the relative effect $\gamma(n)$ as a function of the horizon $n$, for the parameter values we estimated in Section \ref{sec_estimation}. Crucially, the relative effect $\gamma(n)$ is a single-peaked function of the horizon and peaks at an intermediary horizon. This intermediary horizon is the horizon that matters most to bring inflation back to target. It is because it strikes a balance between two opposite forces.
+
+First, short-horizon rates do not affect aggregate demand for many period, so they have a moderate power to cool down the economy. As the horizon $n$ increases, an increase in $i_{t+n}$ affects aggregate demand at all periods between $t$ and $t+n$ and is therefore better able to cool down the economy. This first effect is present under rational expectations as well but not in purely backward-looking models where aggregate demand does not depend on the entire yield curve beyond present short-term rates. Accordingly, if in the model expectations are purely backward-looking $\rho=0$, the relative effect $\gamma(n)$ is a strictly decreasing function of $\gamma$. Current policy rates are then the ones that matter most. But when $\rho>0$, the relative effect $\gamma$ is at first increasing in the horizon $n$.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{figures/relativeanchoringeffect_single.pdf}
+	\caption{The Relative Effect of Interest Rates of Different Horizons}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The figure plots the relative effect $\gamma(n)$ of the interest rate at horizon $n$ as a function of the horizon $n$. The parameter values are the posterior means from the estimation of the model in Table \ref{table_estimation}.} 
+	\end{minipage}
+	\label{fig_relativeanchoringeffect}
+\end{figure}
+
+Yet, as $n$ increases, a second force becomes dominant and makes $\gamma$ decreasing. The more the increase in rates is delayed, the more expectations de-anchor, requiring a stronger rate hike in the future to re-anchor expectations. This second effect exists only when inflation spirals are possible and is therefore absent under rational expectations. It is also absent at the limit where long-run expectations are fixed $\mu=1$, as there is then no risk of de-anchoring.
+
+The horizon of interest rate hikes that matters most for re-anchoring expectations is intermediary, long enough to affect long-term rates but not so long that it mostly cools the economy once expectations have de-anchored much and there is much to re-anchor. It increases when expectations are more forward-looking (higher $\rho$) and when long-run expectations react less to recent inflation (higher $\mu$). For the values of the parameters we estimated (Table \ref{table_estimation}), in which $\rho=0.57$ and $\mu=0.958$, the horizon of short-term interest rates with the highest relative effect is 6 quarters ahead, which matters about 3 times as much as current short-term rates.
+
+Figure \ref{fig_hiketime} illustrates the relative effect of interest rates at different horizons through the same thought experiment as in Section \ref{sec_taylorprinciple}. Again, we assume that the economy is hit in period 0 by a transitory cost-push shock, but this time we no longer assume that interest rates remain constant. Instead, we consider various responses of monetary policy. The thin blue curves correspond to different cases where monetary policy reacts sufficiently to bring the economy back to its stable trajectory. On each curve, the central bank concentrates the policy rate increase in a single quarter. The different curves correspond to different choices of the horizon at which it does so, each spaced by one year. The required size of the increase in the policy rate is smaller when done one year after the shock than when done on impact, but increases steadily afterwards. As a consequence, beyond the first two years, the more delayed the hike is, the larger the fall in output that it causes.
+
+\subsection{Was the Fed Lagging Behind?}\label{sec_laggingbehind}
+Did the Fed react too little and/or too late to the inflation surge of 2021-2022? Endowed with the characterization of active monetary policy in Proposition \ref{proposition_anchoringpaths},
+% ADD BACK IF ADD...
+%we assess whether, at any point in time, the Fed was delivering the active monetary policy necessary to keep control over inflation. To do so,
+we calculate the measure of monetary tightening \eqref{eq_tighteningeffect} in any period $t$ using financial markets' expectations of future policy rates at time $t$. We extract forward rate expectations from a \cite{NelsonSiegel1987} estimation of the yield curve, using OIS swaps with maturities up to ten years ahead.\footnote{We are very grateful to Sarah Mouabbi for sharing her code with us.} Accordingly, we truncate the infinite sum in equation \eqref{eq_tighteningeffect} at the ten-year horizon.
+
+%We first consider the timing of the Fed's tightening.
+Figure \ref{fig_whentightened_main} plots the measure of monetary tightening \eqref{eq_tighteningeffect} over time. Since in itself the measure is up to a constant, the figure plots the scaled measure
+\begin{equation}
+\frac{\sum_{n=0}^{\infty} \gamma(n) E_t(i_{t+n}(\nu))}{\sum_{n=0}^{\infty} \gamma(n)}.\label{eq_tighteningeffect_scaled}
+\end{equation}
+to facilitate comparison with the timing of the rise in the contemporaneous Fed Funds rate.
+Figure \ref{fig_whentightened_main} shows that the Fed's tightening occurred much earlier when assessed through the index of monetary tightening \eqref{eq_tighteningeffect} than when assessed through the contemporaneous Fed Funds rate. The index steadily grew from mid-2020 to mid-2022 in steps with the rise in inflation, as expectations of higher future policy rates increased. It reached a first peak in October 2022, soon after inflation peaked in the second quarter of 2022. In contrast, the Fed Funds rate was not lifted off the ZLB until March 2022 and did not reach its peak of 5.25-5.5\% until July 2023. Figure \ref{fig_whentightened_main} also displays the evolution of some long-term yields. For the calibration at hands, the model's index of monetary tightening is rather well proxied by a five-year yield. This is consistent with the fact that most of the weights on Figure \ref{fig_relativeanchoringeffect} are concentrated on maturities 0 to 20 quarters ahead. In contrast, the one-year yield follows too closely the dynamics of the Fed Funds rate, while the ten-year yield misses some of the dynamics of the Fed's tightening in 2021.
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=\textwidth]{figures/whentightened_yields.pdf}
+	\caption{The Timing of the Fed's Tigthening}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The figure plots the measure of monetary tightening \eqref{eq_tighteningeffect_scaled} over time. The parameter values are the posterior means from the estimation of the model in Table \ref{table_estimation}. Expectations of future policy rates are obtained through a Nelson-Siegel estimation of the yield curve using OIS rates up to 10 years ahead. The infinite sum in equation \eqref{eq_tighteningeffect_scaled} is therefore truncated to 10 years ahead. The contemporaneous effective Fed Funds rate is plotted for comparison, as well as the one, five, and ten-year yields.} 
+	\end{minipage}
+	\label{fig_whentightened_main}
+\end{figure}
+
+% ADD BACK WHEN...:
+%Looking at the Fed's reaction through the index \eqref{eq_tighteningeffect}, monetary tightening was not delayed. But was it enough? The characterization of active monetary policy \eqref{eq_condition_anchoringpaths} answers this question by comparing the extent of monetary tightening \eqref{eq_tighteningeffect} to the strength of the inflationary shocks and to the existing level of de-anchoring. Figure \ref{fig_howmuchtightened} plots the left-hand side of equation \eqref{eq_condition_anchoringpaths} over time. 
+%COMPLETE!
+
+% transition to optimal MP section: only assesses whether active or passive: infinity of ways to deliver it and they are not equivalent; to decide, need to turn to optimal MP
+
+%\begin{figure}[t]
+	%\centering
+	%\includegraphics[width=\textwidth]{figures/howmuchtightened.pdf}
+	%\caption{The Strength of the Fed's Tightening}
+	%\begin{minipage}[c]{6.0in}
+		%\footnotesize \baselineskip=11pt \vspace{5pt}
+		%\emph{Note: The figure plots ...
+			%the index of monetary tightening \eqref{eq_tighteningeffect_scaled} over time, where expectations of future policy rates are obtained through a Nelson-Siegel estimation of the yield curve using OIS rates up to 10 years ahead. The infinite sum in equation \eqref{eq_tighteningeffect_scaled} is therefore truncated to 10 years ahead. The contemporaneous effective Fed Funds rate is plotted for comparison.
+%		} 
+%	\end{minipage}
+%	\label{fig_howmuchtightened}
+%\end{figure}
+
+
+\section{Optimal Way to Keep Expectations under Control}\label{sec_optimal}
+In this section, we move beyond characterizing active monetary policy and look at the best way to bring inflation back to target. To do so, we solve the central bank's optimal policy problem to determine whether monetary policy should rely on current higher policy rates, or expectations of future higher policy rates. We show that the response depends on how much the central bank cares about output stabilization.
+
+\subsection{Characterization: A Generalized Target Criterion}
+The interest rate paths characterized in Proposition \ref{proposition_anchoringpaths} deliver monetary tightening through different combinations of present and expected future higher rates, but they all bring inflation back to target in the long run. Bringing inflation back to target in the long run is only a weak normative requirement however. The different interest rate paths can imply very different paths for inflation and output in the short to medium term. What then is the best way to bring inflation back to target? Does it increase current short-term rates right away, or rely on expectations of higher future policy rates? Answering this question requires to move beyond characterizing active monetary policy, and to consider optimal monetary policy.
+
+We solve for the optimal monetary policy under commitment in the FPH-learning model \eqref{eq_system1}-\eqref{eq_system2}. We assume the central bank has a dual mandate to stabilize inflation and the output gap, with a given weight $\omega$ on the output gap so that its loss function is\footnote{We take this objective as given by the central bank's mandate. It can be shown that in the model under rational expectations, under Calvo price-setting the loss function derived from the representative household's preferences are of the form \eqref{eq_loss} with $\omega = \kappa/\theta$, where $\theta$ is the elasticity of substitution across goods \cite[][, chapter 6]{Woodford}. For a small slope of the Phillips curve $\kappa$ this puts little weight on output relative to inflation stabilization. The welfare costs under Calvo price-setting are however known to be suspiciously large \citep{Nakamuraetal2018}, so we treat $\omega$ as an exogenous parameter. In the version of the FPH-learning model that we consider where planning horizons are heterogeneous among the population, the loss function derived from households' preferences under Calvo pricing is no longer of the form \eqref{eq_loss} as it is under rational expectations---see \cite{WoodfordXie2020}.}
+\begin{equation}
+E_0 \sum_{t=0}^{\infty}\frac{1}{2} \beta^t \left(\pi_t^2 + \omega x_t^2\right).\label{eq_loss}
+\end{equation}
+where $x_t = y_t - y_t^e$ is the output gap. We assume that the central bank has rational expectations, i.e. that it fully understands the way in which firms and households form expectations, and therefore the associated de-anchoring risks of failing to react to the shocks that hit the economy. The program of the central bank is therefore to minimize the loss \eqref{eq_loss} subject to the constraint of the dynamics of the FPH-learning economy \eqref{eq_system_fphlearning}-\eqref{eq_system_fphlearning_i}.
+
+Appendix \ref{appendix_targetcriterion} derives the following characterization of the optimal policies under commitment and under discretion in the FPH-learning model.
+\begin{proposition}\label{proposition_targetcriterion}
+Assume $\rho<\rho^*$. Let $M_0 = (I-\rho A_0)^{-1} (1-\rho)A_0$ and $\Omega = [\omega,0;0,1]$.
+
+The optimal policy under commitment is characterized by the following target criterion
+\begin{equation}
+\zeta_t^{\pi} + \frac{1}{\kappa} (\zeta_t^y-\rho \zeta_{t-1}^y) = 0,\label{eq_targetcriterion}
+\end{equation}
+while the optimal policy under discretion is characterized by
+\begin{equation}
+\zeta_t^{\pi} + \frac{1}{\kappa} \zeta_t^y = 0,\label{eq_targetcriterion_discretion}
+\end{equation}
+where
+\begin{align}
+\zeta_t^{y} &= \omega x_t +(1-\mu) \gamma_t^{y^*} \text{is the marginal cost of higher output at $t$},\label{eq_zetay}\\
+\zeta_t^{\pi} &= \pi_t +(1-\mu) \gamma_t^{\pi^*} \text{ is the marginal cost of higher inflation at $t$},\label{eq_zetapi}\\
+(\gamma_t^{y^*},\gamma_t^{\pi^*})'
+&= E_t \sum_{k=0}^{\infty} (\beta (\mu I + (1-\mu) M_0)')^k  \beta M_0'\Omega (Y_{t+k+1}-Y_{t+k+1}^e)\label{eq_gamma}\\
+&\text{is the marginal cost of higher long-term expectations at $t$}.\nonumber
+\end{align}
+
+Together with the dynamics of the economy \eqref{eq_system_fphlearning}-\eqref{eq_system_fphlearning_i}, both \eqref{eq_targetcriterion} and \eqref{eq_targetcriterion_discretion} define a unique equilibrium path for inflation, output and the policy rate.
+\end{proposition}
+
+To understand the target criterion \eqref{eq_targetcriterion}, it is helpful to see how it generalizes the target criterion under rational expectations. When expectations are rational $\rho=1$, $M_0=0$ and so $\gamma_t^*=0$. The target criterion under commitment \eqref{eq_targetcriterion} reduces to the classic target criterion
+\begin{equation}
+\pi_t + \frac{\omega}{\kappa} (x_t - x_{t-1}) = 0.\label{eq_target_re}
+\end{equation}
+The rational expectations target criterion under commitment sets to zero the sum of the marginal cost of higher inflation, plus $\frac{\omega}{\kappa}$ times the change in the marginal cost of a higher output gap. The marginal cost of higher inflation is simply $\pi_t$ and the marginal cost of a higher output gap is simply $x_t$. The fact that the marginal cost of a higher output gap yesterday is subtracted to the criterion is the mark of optimal policy under commitment. It is absent under discretion, with monetary policy under discretion characterized as
+\begin{equation}
+\pi_t + \frac{\omega}{\kappa} x_t = 0.\label{eq_target_re_discretion}
+\end{equation}
+This history-dependence captures the fact that the optimal monetary policy must deliver on the past promises that it made yesterday in order to move forward-looking expectations yesterday.
+
+The generalized target criterion \eqref{eq_targetcriterion} modifies the target criterion under rational expectations in two ways. First, the cost $\zeta_t^{\pi}$ of higher inflation at $t$ now includes the cost $\gamma_t^{\pi*}$ of causing higher long-term inflation expectations from tomorrow on---and similarly for the cost of higher output.\footnote{Since a one-percentage point increase in inflation at $t$ increases long-term expectations of inflation by $1-\mu$ percentage points, $\gamma_t^{\pi*}$ enters with the coefficient $1-\mu$ in equation \eqref{eq_zetapi}.} The cost of higher long-term expectations corresponds itself to the higher inflation and higher output that higher long-term expectations will cause in the future, all else being equal. They can therefore be expressed as a discounted sum of future inflation and future output gaps---equation \eqref{eq_gamma}.
+
+The second modification relative to rational expectations is specific to the policy under commitment. Because expectations are less forward-looking, the term $\zeta_t^y$ that captures the commitment of the central bank to past promises is now discounted at the rate $\rho$. The less forward-looking expectations are, the less the central bank can use its ability to commit to move the forward-looking component of expectations---and so the less it needs to fulfill past promises. When expectations are purely backward-looking $\rho=0$, there is no role for commitment and so no constraint from past promises. The policy under commitment does not differ from the policy under discretion in this case. Whenever expectations are partly forward-looking $\rho>0$, a role for commitment and past promises is restored, although it is weaker than under rational expectations.
+
+If the target criterion \eqref{eq_targetcriterion} generalizes the one under rational expectations, it also generalizes the one derived in the adaptive learning model of \cite{MolnarSantoro2014} where expectations are purely backward-looking. Indeed, Appendix \ref{appendix_case_rho0} shows that in the case of purely backward-looking expectations $\rho=0$, the target criterion \eqref{eq_targetcriterion} reduces to
+\begin{equation}
+\pi_t + \frac{\omega}{\kappa} \left(x_t - (1-\mu) E_t\left(\sum_{k=0}^{\infty} (\beta\mu)^{k} \beta^2 x_{t+k+1}\right)\right)=0,\label{eq_molnarsantoro}
+\end{equation}
+which is the target criterion in the model of \cite{MolnarSantoro2014}.\footnote{Equation \eqref{eq_molnarsantoro} does not appear explicitly in \cite{MolnarSantoro2014} but can be easily derived from their equations (10) to (16). See also equation (41) in \cite{EusepiPrestonJEL} (written for $\omega = \kappa/\theta$) and equation (24) in \cite{GasparSmetsVestin2010} (written for $\beta=1$).} Relative to \cite{MolnarSantoro2014} and the adaptive learning literature, the target criterion \eqref{eq_targetcriterion} restores a role for forward-looking expectations and a role for commitment in particular.
+
+\subsection{Self-Implementing Policy}
+The characterization of the optimal policy in Proposition \ref{proposition_targetcriterion} differs from the characterization of the optimal policy under rational expectations in an important way. Under rational expectations, conducting monetary policy by announcing the interest rates path defined by the target criterion \eqref{eq_target_re} or \eqref{eq_target_re_discretion} together with the dynamics of the economy \eqref{eq_system_re} does not define a unique equilibrium. To avoid equilibrium indeterminacy, the optimal allocation needs to be implemented through a feedback rule \citep{GiannoniWoodford2003}.
+
+But in the FPH-learning model where passive monetary policy manifests itself as inflation spirals, the issue of equilibrium indeterminacy no longer arises. Announcing the interest rate path defined by Proposition \ref{proposition_targetcriterion} and equations \eqref{eq_system_fphlearning}-\eqref{eq_system_fphlearning_i} defines a unique equilibrium. The risk of losing control over inflation expectations still very much exist in the form of inflation spirals. But the optimal policy has already selected an interest rate path that increase rates sufficiently to prevent such spirals. The optimal policy problem captures all that is relevant to determining the best way to anchor expectations.
+
+\begin{corollary}
+	The optimal policy is self-implementing: Setting the interest rate path defined by Proposition \ref{proposition_targetcriterion} and the dynamics of the economy \eqref{eq_system_fphlearning}-\eqref{eq_system_fphlearning_i} determines a unique equilibrium.
+\end{corollary}
+
+\subsection{How Fast to Hike?}
+
+With this characterization of optimal monetary policy in hands, we now consider how the central bank should react to a cost-push shock. In particular, should it favor increasing current policy rates now, or should it favor delivering higher policy rates tomorrow, this way increasing current expectations of future rates? Section \ref{sec_beyondtaylor} showed that the relative effect of policy rates soon decreases with the horizon of the policy rate. Increasing rates later requires increasing them more, with a higher cost on output. Does it imply that the central bank only faces a trade-off between creating a recession today, and creating a worse recession tomorrow? If so, doves and hawks should agree to prefer the former.
+
+Figure \ref{fig_irf_fph} plots the response of the economy to a cost-push shock under the optimal policy under commitment for two values of the weights $\omega$ on output stabilization: a small one $\omega =0.01$ and a large one $\omega=0.1$.\footnote{We consider the optimal policy under commitment from a timeless perspective, i.e. respecting the commitment to past promises \eqref{eq_target_re} already in the first period \citep[see][chapter 7]{Woodford}. Since we assume that the steady-state level of output is efficient and since we start the IRF in Figure \ref{fig_irf_re} from steady-state, this does matter however.} The cost-push shock is assumed to follow an AR(1) shock with persistence $\rho_p=0.50$, the posterior mean from the estimation in Table \ref{table_estimation}. As is apparent from the figure, the paths for inflation, output and the policy rate depend heavily on the weight put on output stabilization. When it cares more about output, the central bank increases policy rates much less on impact. As a result, the size of the fall in output is considerably less on impact. To prevent an inflation spiral, the smaller increase in rates early on must be compensated by higher rates later on, in order to bring long-term inflation expectations down. Yet to bring down long-term expectations the central bank does not engineer a recession tomorrow. Instead it keeps the policy rate where it has lifted it for a long time. This leaves output persistently below its steady-state but avoids an outright recession. The persistent tightening does bring long-term expectations back to steady-state in the long run, but it does so slowly.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/IRF_costpush_fph.pdf}
+	\caption{Optimal Response to a Cost-push Shocks in the FPH-Learning Model}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The figures gives the impulse response to a cost-push shock with persistence $\rho_p=0.5$ in FPH-learning economy \eqref{eq_system1}-\eqref{eq_system2}, when monetary policy is set to minimize the loss function \eqref{eq_loss} under commitment. The IRF is given for two different values of the weight $\omega$ on the output gap in the loss function. The values of the other parameters are the posterior means from the estimation in Table \ref{table_estimation}. The real interest rate that is plotted is the rationally expected ex-ante real rate $r_t=i_t-E_t{\pi_{t+1}}$.} 
+	\end{minipage}
+	\label{fig_irf_fph}
+\end{figure}
+
+How does the optimal path for the policy rate compare to the one under rational expectations? Under rational expectations as well, a larger weight on output stabilization calls for a more gradual increase in policy rates. Figure \ref{fig_irf_re} plots the optimal response under commitment to the same cost-push shock $\nu_t^p$ in the rational expectations economy, for the same weights on output stabilization. The larger the weight on output, the smaller the increase in policy rates early on.
+
+There are however reasons to be suspicious of this result when it is derived under rational expectations. First, under rational expectations optimal policy under commitment heavily relies on the strong forward-lookingness of rational expectations. The optimal policy under rational expectations \eqref{eq_target_re} is a form of NGDP targeting, which seeks to compensate the inflation on impact with subsequent below-target inflation. This makes somewhat unrealistic predictions, as can be seen on Figure \ref{fig_irf_re}. For the large weight $\omega=0.1$ on output, the nominal policy rate quickly falls below its steady-state value. The central bank delivers higher real interest rates instead through below-target inflation, without above steady-state nominal rates. 
+
+Second, rational expectations assume away the risk that letting inflation drift away from target will require a costly drop in output tomorrow in order to disinflate the economy. Indeed, under rational expectations, a credible shift in monetary policy brings inflation down at no output cost. Instead, it can easily create an economic boom \citep{Ball1994}. This leaves no room for the argument that hiking early can be beneficial in order to prevent a costly disinflation in the future.
+
+The FPH-learning economy addresses both concerns of rational expectations. First, it makes expectations less forward-looking. Second, it makes disinflation costly. Yet, increasing rates gradually remains relevant provided the central bank cares enough about output stabilization. A large weight on output is of course to be judged excessive by policy-makers with a higher weight on inflation---doves are doves. But the recommendation to increase rates strongly and quickly in the face of a large supply shock does not follow from the possibility of inflation spirals alone. A relatively lower weight on output stabilization is required for the strong and quick hike to be preferred to a smaller but more persistent one.
+
+%Optimal policy in the FPH-learning economy differs from the one under rational expectations however. For a given weight on output, the central bank increases rates more promptly in the FPH-learning model than under rational expectations. As emphasized in \cite{MolnarSantoro2014, EusepiPrestonJEL, GasparSmetsVestin2010}, the threat of a de-anchoring of inflation expectations forces the central bank to react more aggressively to a cost-push shock than it does under rational expectations. But the rational expectations benchmark is one in which the increase in rates is extremely gradual for substantial weights on output stabilization.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/IRF_costpush_re.pdf}
+	\caption{Optimal Response to a Cost-push Shocks under Rational Expectations}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The figures gives the impulse response to a cost-push shock with persistence $\rho_p=0.5$ in the rational expectations economy \eqref{eq_system_re}, when monetary policy is set to minimize the loss function \eqref{eq_loss} under commitment. The IRF is given for two different values of the weight $\omega$ on the output gap in the loss function. The values of the other parameters are the posterior means from the estimation in Table \ref{table_estimation}.} 
+	\end{minipage}
+	\label{fig_irf_re}
+\end{figure}
+
+\subsection{How Fast and How Much Should the Fed Have Hiked?}
+
+We use the characterization of optimal monetary policy in Proposition \ref{proposition_targetcriterion} to address the question of how fast and how much the Fed should have hiked its policy rates in the face of the inflation surge of 2021-2022.
+% BACK ONCE ACTIVE MP EXERCICE COMPLETED: 
+%Whether the Fed's reaction conformed with optimal policy is a much higher standard than whether it delivered an active monetary policy---a much weaker normative requirement which we assessed in Section \ref{sec_laggingbehind}
+We proceed as follows. Given our estimation of the model---made under the assumption that monetary policy was following the Taylor rule \eqref{eq_taylor}---we recover the demand and supply shocks $\nu_y$ and $\nu_p$ that hit the US economy by inverting the model up to the first quarter of 2024. Starting from 2021Q1, we then calculate the counterfactual that the economy would have taken had it been subjected to the same shocks but had the Fed followed the optimal monetary policy characterized in Proposition \ref{proposition_targetcriterion}. We do so for two weights $\omega$ on output stabilization: a small weight $\omega = 0.01$ and a large weight $\omega = 0.1$. Recall from the estimation in Section \ref{sec_estimation} that our measure of the output gap is the one provided by the CBO. This guarantees that we do not assess monetary policy under the assumption that the output gap was very negative at the start of 2021, as would be the case if we estimated the model using output growth as the observable (Appendix \ref{appendix_estimationoutputgrowth}). A very negative output gap at the start of 2021 would make the recommendations of optimal policy more dovish.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/optim_policy_compar.pdf}
+	\caption{Optimal Response to the Great Inflation Surge of 2021-2022}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The figure gives the path of the US economy under optimal monetary policy for the shocks that hit the US economy over 2021-2024. The parameters values are the posterior means from the estimation of the model in Table \ref{table_estimation}. The underlying shocks are recovered assuming that the Fed follows the Taylor rule \eqref{eq_taylor} (with coefficients estimated over the period 1984-2007). The optimal monetary policy is given for two values of the weight $\omega$ on the output gap in the loss function. The expected path of the economy until 2025Q1 under the optimal policies is plotted in dashed lines.} 
+	\end{minipage}
+	\label{fig_optimfed}
+\end{figure}
+
+Figure \ref{fig_optimfed} provides the results. Compared to the optimal policy with a small weight on output stabilization, the Fed appears to have been clearly behind the curve. The optimal policy would have started raising rates in early 2021, a year before the Fed did. As a result, inflation would have been significantly lower, peaking at 6.2\% instead of 8.7\%. This would have come at the cost of a severe recession, with output contracting to -7.9\% below potential in 2022Q2.
+
+The optimal policy with a large weight on output stabilization is however quite different. It starts raising rates in 2022Q2 (after a quickly reverted small rise in 2021Q4), exactly when the Fed actually did. The pace of the increase in policy rates is similar to the one the Fed implemented, but peaks higher, at 6.5\%.\footnote{The \emph{ex post} increase in the policy rate under the optimal policy is not gradual due to the estimated resorption of the negative pandemic demand shocks in 2022. The \emph{ex ante} optimal policy in 2022Q1 called for a much more gradual increase in the Fed Funds rates, as shown in Appendix \ref{app_optimfed_liftoff}.} Because policy rates increase later that under the optimal policy with a small weight on output, inflation is higher. It peaks at 7.9\%, only 0.8 percentage point below the actual peak of inflation. But the delayed increase in policy rates essentially avoids any significant recession, with output contracting only to -1.5\% below potential.
+
+Overall the optimal policy with a large weight on output is relatively close to the policy the Fed implemented---although it precludes a positive output gap, as the CBO estimates has been the case in the second half of 2021. The delayed hike does imply a larger increase in long-term inflation expectations, but it is justified by the benefit of avoiding a large recession.
+
+\section{Conclusion}
+To keep control over inflation expectations in the face of inflationary shocks, a central bank must tighten monetary policy enough. At this broad level the intuition is consistent with the result in rational expectations models that the Taylor principle rules out self-fulfilling inflation. In this paper we have argued that this leaves out important elements of this intuition however. Studying how to stabilize inflation expectations in a bounded-rationality model that captures both forward and backward-looking elements of expectations allows to capture these elements. It captures the risks of passive monetary policy in the form of inflationary spirals, despite assuming that expectations are partly forward-looking. It allows to identify at what horizons interest rate hikes matter most for bringing back inflation expectations to target. And it allows to derive policy recommendations directly from the study of optimal policy, since implementation issues are no longer a concern.
+
+\clearpage
+\appendix
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+
+\input{KeepingControlOverBoundedlyRationalExpectations_appendix}
+
+\clearpage
+
+{\baselineskip=14pt
+	\bibliography{bibliography}
+	%\bibliographystyle{apalike}}
+	%\bibliographystyle{econometrica}}
+	\bibliographystyle{ecta3etal}}
+\pagebreak
+\clearpage
+
+\end{document}
+
+\begin{table}[t]
+	\begin{center}
+		\caption{Default Calibration}\label{table_calibration}
+		\begin{tabularx}{0.9\textwidth}{lcll} 
+			\hline
+			Parameter & Value & Interpretation & Note \\ 
+			\hline
+			$\beta$ & 0.995 & Discount Factor & \\
+			$\sigma$ & 0.5 & Intertemporal Elasticity of Substitution &\\
+			$\kappa$ & 0.04 & Phillips Curve Slope &\\
+			$\rho$ & 0.5 & Forward-lookingness of Planning& Gust et al. (2022)\\					
+			$\mu$ & 0.9 & Persistence of Learning (one minus learning gain) & Gust et al. (2022) \\
+			\hline
+		\end{tabularx}
+		
+		\begin{minipage}[c]{8in}
+			\footnotesize \baselineskip=11pt \vspace{5pt} 
+			\emph{Note:} The table gives the default calibration used in the paper whenever not stated otherwise. The calibration is quarterly.
+		\end{minipage}	
+	\end{center}
+\end{table}
+

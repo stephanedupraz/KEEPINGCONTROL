@@ -1,0 +1,571 @@
+\section{Matrix Expressions}\label{appendix_matrixexpressions}
+Injecting the Taylor rule into the Euler equation, the New Keynesian model under rational expectations can be written in 2-by-2 matrix form as
+\begin{align}
+B Y_t = C E_t(Y_{t+1}) + a \nu_t,
+\end{align}
+where $Y_t = (y_t,\pi_t)'$, $\nu_t = (\nu_t^y,\nu_t^p-\kappa y_t^e)'$, and $B$, $C$, $a$ are
+\begin{align}
+B &= \begin{pmatrix} 1+\sigma \phi_y & \sigma \phi_{\pi} \\ -\kappa & 1 \end{pmatrix},\\
+C &= \begin{pmatrix} 1 & \sigma \\ 0 & \beta \end{pmatrix},\\
+a &= \begin{pmatrix} 1 & 0  \\ 0 & 1  \end{pmatrix}.
+\end{align}
+
+It can be rewritten as equation \eqref{eq_system_re} with $A=B^{-1}C$ and $b=B^{-1}a$, i.e.
+\begin{align}
+A &= \frac{1}{1+\sigma (\phi_y+\kappa \phi_{\pi})} \begin{pmatrix} 1 & \sigma (1-\beta \phi_{\pi})\\ \kappa & \sigma \kappa + \beta (1+\sigma \phi_y)\end{pmatrix},\label{eq_matrixA}\\
+b &= \frac{1}{1+\sigma (\phi_y+\kappa \phi_{\pi})}\begin{pmatrix} 1 & -\sigma \phi_{\pi} \\ \kappa & 1+\sigma \phi_y \end{pmatrix}.
+\end{align}
+
+For further reference, the inverse of matrix $A$ is:
+\begin{align}
+A^{-1} = \begin{pmatrix} 1+\sigma \phi_y + \frac{\sigma\kappa}{\beta} & \sigma \phi_{\pi}-\frac{\sigma}{\beta}\\ \frac{-\kappa}{\beta} & \frac{1}{\beta}\end{pmatrix}.\label{eq_matrixinverseA}
+\end{align}
+
+In sections \ref{sec_beyondtaylor} and \ref{sec_optimal}, we use the matrix $b_0^i = B_0^{-1}(\sigma,0)'$ which is equal to:
+\begin{align}
+b_0^i = \begin{pmatrix} \sigma  \\ \sigma \kappa \end{pmatrix}.
+\end{align}
+% put b_0^i later on?
+
+\section{Rewriting of the FPH-Learning Model}\label{appendix_learningderivation}
+We show that the FPH-learning model of \cite{Woodford2019} can be put in the form \eqref{eq_system_fphlearning}. Note that in contrast to the presentation in \cite{Woodford2019} we assume that all households and firms have the same long-run value functions and long-run expectations regardless of their planning horizons. This simplifies the derivation and is equally meaningful: once output and inflation are realized, households can use these realizations to form long-run expectations instead of their past nowcasts. We show at the end of the Appendix that we nevertheless fall exactly on the same aggregated model as in \cite{Woodford2019}.
+
+Throughout this appendix we refer to the equation numbers in Woodford's paper, rewriting them with our notations whenever they slightly differ from \cite{Woodford2019}. \cite{Woodford2019} shows that a household with planning horizon $h$ links its expectations at $t$ of output from $t$ to $t+h$ through the standard recursion (equation (2.15))
+\begin{equation}
+j=0,...,h, y_{t+j}^{h-j} = -\sigma (i_{t+j}^{h-j}-E_t(\pi_{t+j+1}^{h-j-1})) + E_t(y_{t+j+1}^{h-j-1}) +\nu_{t+j}^y,\label{eq_rec1}
+\end{equation}
+and at $t+h$ to its long-term value function $v_{t-1}$ through (equation (4.12))
+\begin{equation}
+y_{t+h}^0 = -\sigma i_{t+h}^0 + v_{t-1} +\nu_{t+h}^y,\label{eq412}
+\end{equation}
+where the superscript $h-j$ takes note of the number of periods until the end of the planning horizon of the agent.
+The long-term value function $v_t$ satisfies (equation (4.6))
+\begin{equation}
+v_t = \mu v_{t-1} + (1-\mu) v_t^{est}\label{eq46}
+\end{equation}
+and (equation (4.3))
+\begin{equation}
+v_t^{est} = y_t + \sigma \pi_t.\label{eq43}
+\end{equation}
+Combining equations \eqref{eq412}, \eqref{eq46} and \eqref{eq43} gives
+\begin{equation}
+y_{t+h}^0 = -\sigma i_{t+h}^0 + (y_{t-1}^{*}+\sigma \pi_{t-1}^{*}) + \nu_{t+h}^y.\label{eq_learning1}
+\end{equation}
+
+On the firm's side, Woodford shows (equation (4.15)) that a firm with planning horizon $h$ that gets to reset its price at $t$ sets it to
+\begin{equation}
+p_t^{h*}= E_t^h \left(\sum_{j=0}^h (\alpha \beta)^j (\pi_{t+j} + (1-\alpha \beta) m_{t+j}) + (\alpha \beta)^{h+1} \tilde{v}_{t-1}\right) 
+\end{equation}
+where $\tilde{v}_{t-1}$ is the firm long-term value function, $m$ denotes marginal cost, and $E_t^h$ denotes firm $h$'s subjective beliefs.
+The long-term value function $\tilde{v}_t$ satisfies (equation (4.9))
+\begin{equation}
+\tilde{v}_t = \mu \tilde{v}_{t-1} + (1-\mu) \tilde{v}_t^{est}
+\end{equation}
+and (equation (4.11))
+\begin{equation}
+\tilde{v}_t^{est} = \frac{\pi_t}{1-\alpha}. 
+\end{equation}
+Knowing that $\pi_t^h = (1-\alpha) p_t^{h*}$, and $m_t = \zeta (y_t-y_t^e)$, this can be rewritten
+\begin{equation}
+\pi_t^h = E_t^h \left(\sum_{j=0}^h (1-\alpha) (\alpha \beta)^j (\pi_{t+j} + (1-\alpha \beta) \zeta (y_{t+j}-y_{t+j}^e) + (\alpha \beta)^{h+1} \pi_{t-1}^{*}\right) 
+\end{equation}
+It can be written recursively as
+\begin{align}
+j=0,...,h-1, \pi_{t+j}^{h-j} &= \kappa (y_{t+j}^{h-j}-y_{t+j}^e) + \beta E_t(\pi_{t+j+1}^{h-j-1}),\label{eq_rec2}\\
+\pi_{t+h}^{0} &= \kappa (y_{t+h}^0-y_{t+h}^e) + \beta \pi_{t-1}^{*}.\label{eq_learning2}
+\end{align}
+where $\kappa = \frac{(1-\alpha) (1-\alpha \beta)}{\alpha} \zeta$ is the slope of the NKPC.
+
+Equations \eqref{eq_rec1} and \eqref{eq_rec2} write in matrix form
+\begin{equation}
+j=0,...,h-1, Y_{t+j}^{h-j} = A Y_{t+j+1}^{h-j-1} + b \nu_{t+j},
+\end{equation}
+while equations \eqref{eq_learning1} and \eqref{eq_learning2} write in matrix form
+\begin{equation}
+Y_{t+h}^0 = A Y_{t-1}^{*} + b \nu_{t+h}.
+\end{equation}
+Iterating forward gives equation \eqref{eq_system_fphlearning_h} in the text.
+
+Aggregating across horizons $h$ for the geometric distribution of planning horizons where the fraction of households and firms with planning horizon $h$ is $(1-\rho)\rho^h$ gives equation \eqref{eq_system_fphlearning} in the text.\\
+
+We now show that despite our slight change in assumption that the all households and firms have the same long-run value function and long-run expectations regardless of their planning horizons, the representation of the aggregate economy \eqref{eq_system_longtermexpectations}-\eqref{eq_system_fphlearning} (equivalently, the representation \eqref{eq_system1}-\eqref{eq_system2}) is exactly equivalent to the representation of the aggregate economy in \cite{Woodford2019}.
+
+Equation \eqref{eq_system1} for the forward-looking component of the economy is simply (4.24) in \cite{Woodford2019}, so the forward-looking component is the same. As for the backward-looking component of the economy, \cite{Woodford2019} shows that (equations (4.25) and (4.26)):
+\begin{align}
+y_{t-1}^b &= \rho y_{t-1}^b - \sigma (i_{t-1}^b-\rho \pi_{t-1}^b) + (1-\rho) (y_{t-1}^*+\sigma \pi_{t-1}^*),\\
+\pi_{t-1}^b &= \kappa y_{t-1}^b + \beta \rho \pi_{t-1}^b + \beta (1-\rho) \pi_{t-1}^*.
+\end{align}
+This writes in matrix form
+\begin{align}
+Y_{t-1}^b = \rho A Y_{t-1}^b + (1-\rho) A Y_{t-1}^*, 
+\end{align}
+which is exactly equation \eqref{eq_defYb}. So the backward-looking components is the same.
+
+
+\section{Standard Taylor Principle under Rational Expectations}\label{appendix_taylor_re}
+
+The two eigenvalues $\lambda^*_1(\phi)$ and $\lambda^*_2(\phi)$ of $A^{-1}$ are the solutions of the quadratic equation
+\begin{equation}
+P(\lambda) = \lambda^2 -tr(A^{-1}) \lambda +det(A^{-1}).
+\end{equation}
+where from the expression \eqref{eq_matrixinverseA} of $A^{-1}$
+\begin{align}
+det(A^{-1}) &= \frac{1}{\beta}(1+\sigma \phi_y + \sigma \kappa \phi_{\pi}) >0,\label{eq_det}\\
+tr(A^{-1}) &= \frac{1}{\beta}+\frac{\sigma \kappa}{\beta} +1+\sigma \phi_y>0.\label{eq_tr}
+\end{align}
+One of the two roots---$\lambda_1^*$ without loss of generality---is always outside the unit circle. Indeed, if the roots are real, then $det(A)>0$, $tr(A)>0$ implies that both roots are positive, and since $det(A)>1$ one of them is necessarily greater than one, i.e. outside the unit circle. If the roots are complex, then their common modulus is $\sqrt{det(A)}>1$ so they are both outside the unit circle.
+
+If the roots are real, having both roots outside the unit circle is equivalent to P(1)>0, which is equivalent to the Taylor principle \eqref{eq_taylorprinciple}. In the case of two complex roots, in which case both roots are outside the unit circle, P(1)>0 so the Taylor principle is also satisfied.
+
+
+\section{Proof of Proposition \ref{proposition_taylorprinciple_fphonly}}\label{appendix_stability_fph}
+
+\underline{Consider first the case $|\lambda_2^*(\phi)|>\rho$.} Since we always have $|\lambda_1^*(\phi)|>1>\rho$, this implies that both roots of $(\rho A)^{-1}$ are outside the unit circle. Since in this case $(\rho A)^k$ converges to zero as $k$ tends to infinity, equation \eqref{eq_fph_indiv} can be aggregated to give the unique solution \eqref{eq_system_fph_iterated}.
+
+\noindent \underline{Consider now the case $|\lambda_2^*(\phi)|<\rho$.} The proof consists in showing there exist shock processes for which there is no solution by showing that 
+\begin{align}
+\bar{Y}_t^H = \sum_{h=0}^H (1-\rho) \rho^h Y_t^{h}
+\end{align}
+diverges to infinity as $H$ tends to infinity for these shock processes.
+
+Diagonalize $A$ as:
+\begin{align}
+A = Q \Lambda Q^{-1},\label{eq_diagonalization}
+\end{align}
+where $\Lambda=diag(1/\lambda_i^*)$, and define
+\begin{align}
+Z_t^h &= Q^{-1} Y_t^h,\\
+\varepsilon_t &= Q^{-1}b \nu_t,
+\end{align}
+so that equation \eqref{eq_fph_indiv} implies
+\begin{align}
+Z_t^h =  E_t \sum_{j=0}^h \Lambda^j \varepsilon_{t+j}.
+\end{align}
+Along the first component, we have
+\begin{align}
+z_{t,1}^{h} = E_t \sum_{j=0}^h \left(\frac{1}{\lambda_1^*(\phi)}\right)^j \varepsilon_{t+j,1}
+\end{align}
+which since $|\lambda_1^*(\phi)|>\rho$ aggregates into the finite limit
+\begin{align}
+z_{t,1} = E_t \sum_{j=0}^\infty \left(\frac{\rho}{\lambda_1^*(\phi)}\right)^j \varepsilon_{t+j,1}.
+\end{align}
+Along the second component, we have
+\begin{align}
+z_{t,2}^{h} = E_t \sum_{j=0}^h \left(\frac{1}{\lambda_2^*(\phi)}\right)^j \varepsilon_{t+j,2}.
+\end{align}
+
+Define
+\begin{align}
+\bar{z}_{t,2}^H = \sum_{h=0}^H (1-\rho) \rho^h z_{t,2}^{h}.
+\end{align}
+We show that for a persistent enough shock process, $\bar{z}_{t,2}^H$ diverges so that there is no solution for that shock process. Since $\frac{\lambda_2^*(\phi)}{\rho}<1$, there exists $\delta$ such that $\frac{\lambda_2^*(\phi)}{\rho}<\delta<1$. Consider a shock process where shocks decay at rate slower than $\delta$. We show that $\bar{z}_{t,2}^H$ diverges as $H$ tends to infinity. The sequence $\bar{z}_{t,2}^H$ can be written as the series of general term
+\begin{align}
+\bar{z}_{t,2}^H - \bar{z}_{t,2}^{H-1} = (1-\rho) \rho^H E_t\sum_{j=0}^{H} \left(\frac{1}{\lambda_2^*(\phi)}\right)^j \varepsilon_{t+j,2}.
+\end{align}
+If $\bar{z}_{t,2}^H$ were to converge, then its general term would tend to zero as $H$ tends to infinity. We show it does not. Define the sequence
+\begin{align}
+u_t^H = \left(\frac{\lambda_2^*(\phi)}{\delta}\right)^H E_t\sum_{j=0}^{H} \left(\frac{1}{\lambda_2^*(\phi)}\right)^j \varepsilon_{t+j,2},
+\end{align}
+so that 
+\begin{align}
+\bar{z}_{t,2}^H - \bar{z}_{t,2}^{H-1} = (1-\rho) \left(\frac{\delta \rho}{\lambda_2^*(\phi)}\right)^H u_t^H.
+\end{align}
+Since $\frac{\rho \delta}{\lambda_2^*(\phi)}>1$, if $\bar{z}_{t,2}^H$ were to converge then $u_t^H$ would converge. But since 
+\begin{align}
+u_t^H = \frac{E_t(\varepsilon_{t+H,2})}{\delta^H} + \frac{\lambda_2^*(\phi)}{\delta} u_{t}^{H-1},
+\end{align}
+this would imply that $E_t(\varepsilon_{t+H,2})/\delta^H$ converges, i.e. that $E_t(\varepsilon_{t+H,2})$ does not decay at rate slower than $\delta$. Hence by contradiction $\bar{z}_{t,2}^H$ diverges. This ends the proof.
+
+Finally, we derive the expression for the threshold \eqref{eq_threshold}. Denote $A_0$ the matrix $A$ when $\phi_{\pi}=\phi_y=0$. The roots of the matrix $A_0^{-1}$ are then both real, and the smaller root is
+\begin{align}
+\lambda_2^*(0) = \frac{tr(A_0^{-1})-\sqrt{(tr(A_0^{-1}))^2-4det(A_0^{-1})}}{2}.
+\end{align}
+The condition $\frac{1}{\rho}\lambda_2^*(0)>1$ is equivalent to $\rho<\rho^*=\lambda_2^*(0)$, which is the expression \eqref{eq_threshold} once replacing the expressions for the trace \eqref{eq_tr} and determinant \eqref{eq_det}.
+
+\section{Proof of Proposition  \ref{proposition_taylorprinciple}}\label{appendix_taylorprinciple}
+
+\underline{Consider the case $|\lambda_2^*(\phi)|>\rho$.} Since we always have $|\lambda_1^*(\phi)|>1>\rho$, this implies that both roots of $(\rho A)^{-1}$ are outside the unit circle. Since in this case $(\rho A)^k$ converges to zero as $k$ tends to infinity, equation \eqref{eq_system_fphlearning_h} can be aggregated across planning horizons to give the unique solution \eqref{eq_system_fph_iterated}.
+
+Defining the backward-looking and forward-looking components of $Y_t$,
+\begin{align}
+Y^b_{t-1} &=(I-\rho A)^{-1}(1-\rho)A Y_{t-1}^*,\\
+Y^f_t &= Y_t - Y^b_{t-1},
+\end{align}
+the equilibrium \eqref{eq_system_fph_iterated}-\eqref{eq_system_longtermexpectations} satisfies the recursive system
+\begin{align}
+Y^f_t &= (\rho A) E_t(Y^f_{t+1}) + b \nu_t,\\
+Y^b_t &= \bigg(\mu I + (1-\mu) (I-\rho A)^{-1}(1-\rho)A\bigg) Y^b_{t-1} + \bigg((1-\mu) (I-\rho A)^{-1}(1-\rho)A\bigg) Y^f_t.
+\end{align}
+
+It can be written backward and in matrix form as
+\begin{align}
+\begin{pmatrix}
+E_t (Y^f_{t+1}) \\
+Y^b_{t}
+\end{pmatrix} = \begin{pmatrix}
+(\rho A)^{-1} & 0 \\
+\bigg((1-\mu) (I-\rho A)^{-1}(1-\rho)A\bigg) & \bigg(\mu I + (1-\mu) (1-\rho) (I-\rho A)^{-1}A\bigg)
+\end{pmatrix} \begin{pmatrix}
+Y^f_t  \\
+Y^b_{t-1}
+\end{pmatrix} - \begin{pmatrix}
+(\rho A)^{-1}b  \\
+0
+\end{pmatrix} \nu_t
+\end{align}
+This is a triangular system, whose 4 roots are therefore the eigenvalues of the 2-by-2 matrices $(\rho A)^{-1}$ and $(\mu I + (1-\mu) (I-\rho A)^{-1}(1-\rho)A)$. We already encountered the eigenvalues of $(\rho A)^{-1}$. They correspond to the forward-looking component of the system. Denote them $\lambda^f_i$, $i=1,2$. They depend on the eigenvalues $\lambda_i^*$ of $A^{-1}$ as $ \lambda^f_i = \lambda_i^*/\rho$. We denote $\lambda^b_i$, $i=1,2$ the eigenvalues of the matrix $(\mu I + (1-\mu) (I-\rho A)^{-1}(1-\rho)A)$. They correspond to the backward-looking component of the system. To determine whether the solution is bounded or unbounded, we express these backward-looking roots as a function of the roots of $A^{-1}$.
+
+\begin{lemma}\label{lemma_roots}
+	The backward-looking roots of the FPH-learning New-Keynesian economy \eqref{eq_system1}-\eqref{eq_system2} are the following direct function of the roots $\lambda_i^*(\phi)$ of the economy under rational expectations
+	\begin{align}
+	\lambda^b_i(\phi) &=\mu + (1-\mu)(1-\rho)\left(\frac{1}{\lambda_i^*(\phi)-\rho}\right), \text{ for } i=1,2.\label{eq_lambdabar}
+	\end{align}
+\end{lemma}
+
+\begin{proof}
+Diagonalize $A$ as in \eqref{eq_diagonalization}. We have that:
+\begin{align}
+(I-\rho A)^{-1}A &= (Q(I-\rho\Lambda)Q^{-1})^{-1}Q \Lambda Q^{-1}\\
+&= Q(I-\rho\Lambda)^{-1}\Lambda Q^{-1}\\
+&= Q diag\left(\frac{1}{\lambda_i^*-\rho}\right) Q^{-1}.
+\end{align}
+So that:
+\begin{align}
+(\mu I + (1-\mu)(1-\rho)(I-\rho A)^{-1}A) = Qdiag\left(\mu + (1-\mu)(1-\rho)\left(\frac{1}{\lambda_i^*-\rho}\right)  \right)Q^{-1}.
+\end{align}
+So $(\mu I + (1-\mu)(1-\rho)(I-\rho A)^{-1}A)$ is diagonalizable in the same basis as $A$ and its eigenvalues are the ones given in \eqref{eq_lambdabar}.
+\end{proof}
+
+The solution is bounded if and only if both backward-looking roots $\lambda^b_i(\phi)$ are inside the unit circle. To see on which side of the unit circle the $\lambda_i^*(\phi)$ are, we show the following lemma.
+
+\begin{lemma}
+If $\lambda_i^*(\phi)$ is outside the unit circle, then $\lambda^b_i(\phi)$ is inside.
+\end{lemma}
+		
+\begin{proof}
+Assume that $\lambda_i^*(\phi)$ is outside the unit circle, $|\lambda_i^*(\phi)|>1$. Since from equation \eqref{eq_lambdabar}
+	\begin{equation}
+	\lambda^b_i(\phi)-\mu=\frac{(1-\rho)(1-\mu)}{\lambda_i^{\star}(\phi)-\rho}
+	\end{equation}
+	and
+	\begin{equation}
+	\lvert \lambda_i^\star(\phi)-\rho\lvert \geq \lvert \lambda_i^\star(\phi)\lvert -\rho \geq 1-\rho,
+	\end{equation}
+	we have that
+	\begin{equation}
+\lvert\lambda^b_i(\phi)\rvert \leq\lvert \lambda^b_i(\phi) -\mu\rvert +\mu<\frac{(1-\rho)(1-\mu)}{\lvert \lambda_i^\star(\phi)-\rho\lvert}+\mu\leq1.
+	\end{equation}
+\end{proof}
+
+Since $\lambda_1^*(\phi)$ is always outside the unit circle, $\lambda^b_i(\phi)$ always is inside. We now distinguish the two cases.
+
+\begin{itemize}
+\item If the Taylor principle \eqref{eq_taylorprinciple} is satisfied, then $\lambda_2^*(\phi)$ is outside the unit circle, so $\lambda^b_2(\phi)$ is inside the unit circle. Both backward roots are inside the unit circle so the solution is bounded.
+\item If the Taylor principle \eqref{eq_taylorprinciple} is not satisfied, then $\lambda_2^*(\phi)$ is inside the unit circle. It is also necessarily real and positive, and therefore so is $\lambda_2^f(\phi)=\lambda_2^*(\phi)/\rho$. Given the assumption |$\lambda_2^*(\phi)|>\rho$, this implies $\lambda_2^*(\phi)/\rho>1$. So from equation \eqref{eq_lambdabar}, we have that
+\begin{align}
+\lambda_2^b(\phi) = \mu + (1-\mu)(1-\rho)\left(\frac{1}{\lambda_2^*(\phi)-\rho}\right) > \mu + (1-\mu)\left(\frac{1}{\rho}-1\right)\left(\frac{1}{\frac{\lambda_2^*(\phi)}{\rho}-1}\right) > \mu + (1-\mu)=1.
+\end{align}
+So $\lambda_2^b(\phi)$ is outside the unit circle, so the solution is unbounded.
+\end{itemize}
+
+\underline{Consider now the case $|\lambda_2^*(\phi)|<\rho$.} The proof follows the same step as absent long-term learning in Appendix \ref{appendix_stability_fph}.
+
+\section{Expression for Average Forecasts}\label{appendix_forecasts}
+In this appendix we derive the expression for the average forecast among the population of agents with different planning horizons. The expectations at $t$ of $Y_{t+i}$ (ie. the $i$ period-ahead forecast) by an agent with planning horizon $h$ is
+\begin{itemize}
+	\item For $h\geq i$:
+	\begin{align}
+	Y_{t+i}^{h-i} = E_t \left(\sum_{j=0}^{h-i} A^j b \nu_{t+i+j} \right) + A^{h+1-i} Y_{t-1}^*.
+	\end{align}
+	\item For $h< i$:
+	\begin{align}
+	Y_{t+i}^{h-i} = Y_{t-1}^*.
+	\end{align} 
+\end{itemize}
+
+Averaging over the planning horizons distributed geometrically, the average forecast $i$ periods ahead is
+\begin{align}
+F_t(Y_{t+i}) &= E_t\left(\sum_{h=i}^{\infty} (1-\rho) \rho^h \sum_{j=0}^{h-i} A^j b \nu_{t+i+j} \right) + \left(\sum_{h=0}^{i-1}(1-\rho) \rho^h Y_{t-1}^* + \sum_{h=i}^{\infty}(1-\rho)\rho^h A^{h+1-i} Y_{t-1}^* \right)\nonumber\\
+& = E_t\left(\rho^i \sum_{j=0}^{\infty} (\rho A)^j b \nu_{t+i+j} \right) + \bigg((1-\rho^i) I + \rho^i (1-\rho) (I-\rho A)^{-1} A \bigg) Y_{t-1}^* \nonumber\\
+& = \rho^i E_t(Y_{t+i}^f)  + \bigg((1-\rho^i) I + \rho^i (1-\rho) (I-\rho A)^{-1} A \bigg) Y_{t-1}^*.
+\end{align}
+Note that as $i \rightarrow \infty$, the average forecast tends to the long-term forecast $Y_{t-1}^*$.
+
+\section{Estimation Results using Output Growth}\label{appendix_estimationoutputgrowth}
+
+Table \ref{table_estimation_outputgrowth} gives the results when estimating the model with the growth rate of per capita output instead of the CBO estimate of the output gap as observable, as in Table \ref{table_estimation}. Equation \eqref{eq_obsy} is replaced by
+\begin{align}
+y_t^{data} &= y_t -y_{t-1} + \bar{g}_y.
+\end{align}
+Results are very similar.
+
+\begin{table}
+	\caption{Prior and Posterior Distributions of Parameters}
+	\begin{center}
+\begin{tabularx}{0.8\textwidth}{llccccc} 
+\hline 
+Parameter& \multicolumn{3}{c}{Prior Distribution} & \multicolumn{3}{c}{Posterior Distribution} \\ 
+& Distribution &Parameter 1& Parameter 2& Mode & Mean & St. Dev.\\ 
+\hline 
+$\bar{g}_Y             $ & Normal                                                       & 0.50& 0.10& 0.49& 0.49& 0.01  \\ 
+$\bar{\pi}^{E,1y}         $ & Normal                                                       & 2.00& 1.00& 2.99& 3.09& 0.12  \\ 
+$\sigma                $ & Gamma                                                        & 2.00& 0.50& 3.14& 3.57& 0.61  \\ 
+$\kappa                $ & Gamma                                                        & 0.05& 0.10& 0.01& 0.03& 0.02  \\ 
+$\phi_\pi              $ & Gamma                                                        & 1.50& 0.10& 1.41& 1.42& 0.09  \\ 
+$\phi_y                $ & Gamma                                                        & 0.25& 0.25& 0.89& 0.86& 0.24  \\ 
+$\rho                  $ & Uniform                                                      & 0.00& 1.00& 0.73& 0.57& 0.17  \\ 
+$\rho_\xi              $ & Beta                                                         & 0.50& 0.10& 0.93& 0.92& 0.02  \\ 
+$\rho_i                $ & Beta                                                         & 0.50& 0.10& 0.88& 0.87& 0.03  \\ 
+$\rho_p                $ & Beta                                                         & 0.50& 0.10& 0.46& 0.53& 0.09  \\ 
+$\sigma_\xi            $ & InvGamma                                                     & 1.00& 4.00& 0.53& 0.64& 0.12  \\ 
+$\sigma_i              $ & InvGamma                                                     & 1.00& 4.00& 0.50& 0.50& 0.12  \\ 
+$\sigma_p              $ & InvGamma                                                     & 1.00& 4.00& 0.13& 0.14& 0.01  \\ 
+$\sigma_e              $ & InvGamma                                                     & 1.00& 4.00& 0.48& 0.50& 0.04  \\ 
+\hline 
+\end{tabularx}
+%\begin{tabularx}{0.8\textwidth}{llccccc} 
+%	\hline 
+%	Parameter& \multicolumn{3}{c}{Prior Distribution} & \multicolumn{3}{c}{Posterior Distribution} \\ 
+%	& Distribution &Parameter 1& Parameter 2& Mode & Mean & St. Dev.\\ 
+%	\hline 
+%	$\bar{y}               $ & Normal                                                       & 0.50& 0.10& 0.49& 0.49& 0.01  \\ 
+%	$\bar{\pi}_S^E         $ & Normal                                                       & 2.00& 1.00& 2.96& 3.06& 0.12  \\ 
+%	$\sigma                $ & Gamma                                                        & 2.00& 0.50& 3.12& 3.59& 0.60  \\ 
+%	$\kappa                $ & Gamma                                                        & 0.05& 0.10& 0.01& 0.03& 0.02  \\ 
+%	$\phi_\pi              $ & Gamma                                                        & 1.50& 0.10& 1.41& 1.43& 0.10  \\ 
+%	$\phi_y                $ & Gamma                                                        & 0.25& 0.25& 0.91& 0.84& 0.22  \\ 
+%	$\rho                  $ & Uniform                                                      & 0.00& 1.00& 0.74& 0.55& 0.15  \\ 
+%	$\rho_\xi              $ & Beta                                                         & 0.50& 0.10& 0.93& 0.92& 0.02  \\ 
+%	$\rho_i                $ & Beta                                                         & 0.50& 0.10& 0.88& 0.87& 0.03  \\ 
+%	$\rho_p                $ & Beta                                                         & 0.50& 0.10& 0.46& 0.54& 0.09  \\ 
+%	$\sigma_\xi            $ & InvGamma                                                     & 1.00& 4.00& 0.53& 0.65& 0.11  \\ 
+%	$\sigma_i              $ & InvGamma                                                     & 1.00& 4.00& 0.51& 0.49& 0.11  \\ 
+%	$\sigma_p              $ & InvGamma                                                     & 1.00& 4.00& 0.13& 0.14& 0.01  \\ 
+%	$\sigma_e              $ & InvGamma                                                     & 1.00& 4.00& 0.48& 0.50& 0.04  \\ 
+%	\hline 
+%\end{tabularx}
+		\begin{minipage}[c]{6.0in}
+			\footnotesize \baselineskip=11pt \vspace{5pt} 
+			\emph{Note:} The table gives the prior and posterior distributions of the model's parameters in the estimation that use output-per-capita growth instead of the CBO estimate of the output gap as observable. The model is quarterly. The parameters Par(1) and Par(2) refer to: the mean and standard deviation for the Normal, Beta, and Gamma distributions; the lower and upper bounds of the support for the Uniform distributions; the shape and scale parameters for the Inverse Gamma distributions.
+		\end{minipage}	
+	\end{center}
+	\label{table_estimation_outputgrowth}
+\end{table}
+%%
+% say per capita output gap btw (when remove trend at least; for CBO see!)
+% "This follows Gust et al, and Smets Woueters e.g."
+
+\section{Proof of Proposition \ref{proposition_anchoringpaths}}\label{appendix_anchoringpaths}
+The system \eqref{eq_system1}-\eqref{eq_system2} easily generalizes to the case with an interest rate intercept
+\begin{align}
+Y^f_t &= (\rho A_0) E_t(Y^f_{t+1}) + b_0 \nu_t -b_0 i_t(\nu),\label{eq_system1_exopath}\\
+Y^b_t &= \bigg(\mu I + (1-\mu) (I-\rho A_0)^{-1}(1-\rho)A_0\bigg) Y^b_{t-1} + \bigg((1-\mu) (I-\rho A_0)^{-1}(1-\rho)A_0\bigg) Y^f_t.\label{eq_system2_exopath}
+\end{align}
+
+Define
+\begin{align}
+Z^f_t = Q^{-1}Y^f_t,\\
+Z^b_t = Q^{-1}Y^b_t.
+\end{align}
+The system \eqref{eq_system1_exopath}-\eqref{eq_system2_exopath} in $Y_t$ implies for $Z_t$:
+\begin{align}
+Z^f_t &= diag\left(\frac{1}{\lambda^f_i(0)}\right) E_t(Z^f_{t+1}) + c \nu_t - c^i i_t,\\
+Z^b_t &=diag\bigg(\lambda^b_i(0)\bigg) Z^b_{t-1} + diag\bigg(\lambda^b_i(0)-\mu\bigg) Z^f_t.
+\end{align}
+where $c=Q^{-1}b_0$ and $c^i = Q^{-1}b_0^i$.
+
+Denote $z^f_{1,t}$ and $z^b_{1,t}$ the first components of $Z^f_t$ and $Z^b_t$, and $z^f_{2,t}$ and $z^b_{2,t}$ the second components of $Z^f_t$ and $Z^b_t$. They satisfy
+\begin{align}
+z^f_{1,t} &= \frac{1}{\lambda^f_1(0)} E_t(z^f_{1,t+1}) + v_{1,t} - c^i_1 i_t,\label{eq_z1tilde}\\
+z^f_{2,t} &= \frac{1}{\lambda^f_2(0)} E_t(z^f_{2,t+1}) + v_{2,t} - c^i_2 i_t,\label{eq_z2tilde}\\
+z^b_{1,t} &= \lambda^b_1(0) z^b_{1,t-1} + (\lambda^b_1(0)-\mu) z^f_{1,t},\label{eq_z1bar}\\
+z^b_{2,t} &= \lambda^b_2(0) z^b_{2,t-1} + (\lambda^b_2(0)-\mu) z^f_{2,t},\label{eq_z2bar}
+\end{align}
+where $v_t = c \nu_t$, and $v_{1,t}$ and $v_{2,t}$ are the first and second components of $v_t$.
+
+Let us now prove Proposition \ref{proposition_anchoringpaths}. Let us first show the following lemma, which in essence states that the economy is bounded and returns to steady-state if and only if $z_{2,t}^b$ does.
+
+\begin{lemma}\label{lemma:proofstep1}
+Assume $\rho<\rho^*$ and the exogenous shocks converge back to steady-state in expectations $\lim_{k \rightarrow \infty} E_t(\nu_{t+k})=0$. The unique equilibrium of the FPH-learning economy is bounded and returns to steady-state in the long run if and only if:
+\begin{enumerate}[label=(\roman*)]
+	\item The interest rate path converges back to steady-state in expectations $\lim_{n \rightarrow \infty} E_t(i_{t+n})=0$.
+	\item The variable $z^b_{2,t}$ converges back to steady-state in expectations $\lim_{n \rightarrow \infty} E_t(z^b_{2,t+n})=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}~\\
+\underline{Necessary Condition:} Assume that the unique equilibrium \eqref{eq_system_fphlearning_i} remains bounded and converges back to steady-state (i.e. zero) in expectations as $k$ tends to infinity.
+\begin{enumerate}[label=(\roman*)]
+   \item Then it must be that $i_{t+k}$ converges back to steady-state (i.e. zero) in expectations as well. Indeed, from equation \eqref{eq_system_longtermexpectations}, $Y=0$ in steady-state implies $Y^*=0$ and so $Y^b=Y^f=0$ (from equations \eqref{eq_defYb} and \eqref{eq_defYf}). From equation \eqref{eq_system1_exopath} it implies $b_0 \nu - b_0 i =0$. Since it is assumed that $\nu_t$ returns to steady-state, it implies that $i_t$ returns to steady-state.
+\item If $Y_t$ returns to steady-state then $Z_t$ does. Since $\lambda^f_1(0)>1$ and $\lambda^f_2(0)>1$ when $\rho>\rho^*$, and since $i_t$ remains bounded, the forward component $Z_t^f$ of the economy always returns to steady-state. Hence if $Z_t$ returns to steady-state, so does the backward-looking component $Z_t^b$. In particular, its second component $z^b_{2,t}$ returns to steady-state.
+\end{enumerate}
+\underline{Sufficient Condition:} Assume conditions (i) and (ii) are satisfied.  Since $\lambda^f_1(0)>1$ and $\lambda^f_2(0)>1$ when $\rho>\rho^*$, and since $i_t$ remains bounded, the forward component $Z_t^f$ of the economy always returns to steady-state. From equation \eqref{eq_z1bar}, since $\lambda_1^b(0)<1$, so does $E_t(z^b_{1,t+k})$. So assuming that $E_t(z^b_{2,t+k})$ converges back to steady-state, the whole backward-looking component $Z^b_t$ converges back to steady-state, and so $Z_t$ does. Since $Z_t$ returns to steady-state, so does $Y_t$.
+\end{proof}
+
+The rest of the proof consists in characterizing under which condition $E_t(z^b_{2,t+k})$ converges back to steady-state, i.e. item (ii) in Lemma \ref{lemma:proofstep1}. First, the following lemma gives an expression for $E_t(z^b_{2,t+k})$.
+\begin{lemma}\label{lemma:proofstep2}
+	The variable $E_t(z_{2,t+k}^b)$ depends on the interest rate path $(i_{t+n}(\nu))_{n\geq0}$ through:
+	\begin{align}
+	E_t(z_{2,t+k}^b) = \lambda^b_2(0)^{k+1} z^b_{2,t-1} &+ (\lambda^b_2(0)-\mu) \left(
+	\sum_{n=0}^k \phi_k(n) E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu)) + \sum_{n=k+1}^{\infty} \psi_k(n) E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu))\right),\label{eq_z2expression}\\
+	\text{ where }
+	\phi_k(n) &= \lambda^b_2(0)^k \frac{\left(\frac{1}{\lambda^f_2(0)}\right)^{n+1} - \left(\frac{1}{\lambda^b_2(0)}\right)^{n+1}}
+	{\frac{1}{\lambda^f_2(0)}-\frac{1}{\lambda^b_2(0)}},\\
+	\psi_k(n) &=\frac{\lambda^b_2(0)^{k+1} - \lambda^f_2(0)^{k+1}}
+	{\lambda^b_2(0)-\lambda^f_2(0)} \left(\frac{1}{\lambda^f_2(0)}\right)^n,
+	\end{align}
+\end{lemma}
+\begin{proof}
+Iterating equation \eqref{eq_z2bar} forward gives
+\begin{align}
+z^f_{2,t} &=  E_t \sum_{n=0}^{\infty} \left(\frac{1}{\lambda^f_2(0)}\right)^n (v_{2,t+n} - c^i_2 i_{t+n}),\label{eq_z2tildeforward}
+\end{align}
+Iterating equation \eqref{eq_z2bar} backward gives, after injecting \eqref{eq_z2tildeforward}
+\begin{align}
+E_t(z_{2,t+k}^b) = (\lambda^b_2(0)-\mu) \sum_{j=0}^k \lambda^b_2(0)^{k-j} \sum_{n=j}^{\infty} \left(\frac{1}{\lambda^f_2(0)}\right)^{n-j} E_t(v_{t+n}-c^i_2 i_{t+n}) + \lambda^b_2(0)^{k+1} z^b_{2,t-1}.
+\end{align}
+for all $k\geq 0$. Permuting the double summation (distinguishing the cases $n \leq k$ and $n > k$) this can be rewritten as equation \eqref{eq_z2expression}.
+\end{proof}
+
+To conclude the proof, we show that $E_t(z^b_{2,t+k})$ converges back to steady-state if and only if condition \eqref{eq_condition_anchoringpaths} is satisfied. Write the expression \eqref{eq_z2expression} of $E_t(z_{2,t+k})$ in Lemma \eqref{lemma:proofstep2} as
+\begin{align*}
+E_t(z_{2,t+k}) &= a_k + b_k, \text{ where }\\
+a_k &= \lambda^b_2(0)^{k+1} z^b_{2,t-1} + (\lambda^b_2(0)-\mu) \left(
+\sum_{n=0}^{\infty} \phi_k(n) E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu))\right)\\
+b_k &= (\lambda^b_2(0)-\mu)  \left(\sum_{n=k+1}^{\infty} (\psi_k(n)-\phi_k(n)) E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu))\right).
+\end{align*}
+We show that if (i) is satisfied, then $(b_k)_k$ converges to zero, so that $E_t(z_{2,t+k})$ converges back to steady-state if and only if $(a_k)_k$ does. Let $\varepsilon >0$. Since $E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu))$ tends to zero when $n$ tends to infinity, there exists an integer $K$ such that
+$$
+\forall n\geq K,\  |E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu))| \leq \varepsilon.
+$$
+We therefore have that:
+\begin{align*}
+\forall k\geq K,\  |b_k|&\leq (\lambda^b_2(0)-\mu) \sum_{n=k+1}^{\infty} |\psi_k(n)-\phi_k(n)| |E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu))|\\
+&\leq (\lambda^b_2(0)-\mu) \sum_{n=k+1}^{\infty} |\psi_k(n)-\phi_k(n)| \times \varepsilon \\
+\end{align*}
+We can calculate
+\begin{align*}
+|\psi_k(n)-\phi_k(n)|&=\frac{-\lambda^f_2(0)}{\lambda^b_2(0)-\lambda^f_2(0)}(\lambda^b_2(0)^{k-n} -\lambda^f_2(0)^{k-n})
+\end{align*}
+so that 
+\begin{align*}
+\sum_{n=k+1}^{\infty} |\psi_k(n)-\phi_k(n)| &=\frac{-\lambda^f_2(0)}{\lambda^b_2(0)-\lambda^f_2(0)} \sum_{m=1}^{\infty} (\lambda^b_2(0)^{-m} - \lambda^f_2(0)^{-m})\\
+&= \frac{\lambda^f_2(0)}{(\lambda^b_2(0)-1)(\lambda^f_2(0)-1)}
+\end{align*}
+So:
+\begin{align*}
+\forall k\geq K,\ |b_k|&\leq (\lambda^b_2(0)-\mu) \frac{\lambda^f_2(0)}{(\lambda^b_2(0)-1)(\lambda^f_2(0)-1)}\times \varepsilon,
+\end{align*}
+which proves that $(b_k)_k$ tends to zero. It follows that $E_t(z_{2,t+k}^b)$ tends to zero when $k$ tends to infinity if and only if $a_k$ does. It can be written as
+\begin{align*}
+a_k = \lambda^b_2(0)^{k+1} \left(z^b_{2,t-1} + \left(1-\frac{\mu}{\lambda^b_2(0)}\right) \left(
+\sum_{n=0}^{\infty} \gamma(n) E_t(v_{2,t+n}-c^i_2 i_{t+n}(\nu)) \right)\right)
+\end{align*}
+The term in brackets does not depend on $k$, so for $a_k$ to tend to zero when $k$ tends to infinity, it is necessary that the therm in brackets is equal to zero, i.e. that condition (ii) holds.
+
+
+Finally, note that equation \eqref{eq_gammadefinition} is a corollary of Lemma \ref{lemma:proofstep2}. For $k\geq n$, equation \eqref{eq_z2expression} implies that
+\begin{equation}
+\frac{\partial E_t(z_{2,t+k})}{\partial i_{t+n}} = -c_2^i (\lambda^b_2(0)-\mu) \phi_k(n).
+\end{equation}
+Equation \eqref{eq_gammadefinition} follows.
+
+\section{Proof of Proposition \ref{proposition_targetcriterion}}\label{appendix_targetcriterion}
+We first derive the characterization of the optimal policy under commitment, then under discretion.
+
+\noindent \textbf{Optimal Policy under Commitment}
+
+The policy rate $i_t$ shows up only in the first row of the forward-looking component of the economy \eqref{eq_system1} so we can drop $i_t$ and the first row of \eqref{eq_system1} from the optimization program. (It will give $i_t$ residually.) The second row of \eqref{eq_system1} writes
+\begin{equation}
+\label{eq:uni_lag}
+\kappa y^f_t-\pi^f_t+\beta\rho E_t \pi^f_{t+1}+\nu_t^p=0.
+\end{equation}
+
+For a more economically meaningful interpretation of the Lagrange multipliers, we use the representation of the system in $(Y^f_t,Y_{t-1}^*)$ instead of $(Y^f_t,Y^b_{t-1})$. The variables $Y^b_{t}$ is simply the linear transformation of $Y_t^*$:
+\begin{equation}
+Y^b_{t-1} = M_0 Y_{t-1}^*.
+\end{equation}
+where $M_0 = (I-\rho A)^{-1}(1-\rho) A$. The backward-looking component of the economy \eqref{eq_system2} is then replaced by the following recursion on $Y_t^*$:
+\begin{equation}
+Y_t^* = D_0 Y_{t-1}^* + (1-\mu) Y^f_t.\label{eq_Ystar}
+\end{equation}
+where $D_0 = \mu I +(1-\mu) M_0$.
+
+The program of the central bank can therefore be written as
+\begin{align}
+&\min_{Y^f_t,Y_{t}^*} E_0 \sum_{t=0}^{\infty} \frac{1}{2} \beta^t (Y^f_t+M_0Y_{t-1}^*-Y_t^e)'\Omega (Y^f_t+M_0Y_{t-1}^*-Y_t^e),\\
+&\text{s.t. } (\kappa,-1)Y^f_t+\beta(0,\rho)E_tY^f_{t+1}+(0,1)\nu_t=0,\label{constraint_forward}\\
+&\text{s.t. } Y_t^* = D_0 Y_{t-1}^* + (1-\mu) Y^f_t,\label{constraint_backward}
+\end{align}
+where $\Omega = [\omega,0;0,1]$. 
+
+Denote by $\tilde{\gamma}_t$ the univariate Lagrange multiplier associated to the forward constraint \eqref{eq:uni_lag}. Denote $\gamma_t^*=(\gamma_t^{y*},\gamma_t^{\pi*})'$ the 2-dimensional multiplier associated to constraint \eqref{eq_Ystar}. The first-order conditions of the central bank's optimality program are
+\begin{align}
+&\Omega (Y_t-Y_t^e)+\left[\begin{array}{c}\kappa\\ -1\end{array}\right]\tilde{\gamma}_t +\left[\begin{array}{c}0\\ \rho\end{array}\right]\tilde{\gamma}_{t-1}+(1-\mu)\gamma_t^*=0,\label{eq_gammatilde}\\
+& \gamma_t^* = \beta E_t\bigg(M_0'\Omega (Y_{t+1}-Y_{t+1}^e)\bigg) + \beta E_t\bigg(D_0' \gamma_{t+1}^*\bigg).\label{eq_gamma_rec}
+\end{align}
+Iterating \eqref{eq_gamma_rec} forward gives equation \eqref{eq_gamma} in the text.
+The first 2-dimensional equations \eqref{eq_gammatilde} can be rewritten to eliminate $\tilde{\gamma}_t$ as
+\begin{equation}
+\zeta_t^{\pi} + \frac{1}{\kappa} (\zeta_t^y-\rho \zeta_{t-1}^y) = 0,\label{eq_optimality}
+\end{equation}
+where
+\begin{align}
+\zeta_t^{\pi} &= \pi_t +(1-\mu) \gamma_t^{\pi^*},\\
+\zeta_t^{y} &= \omega (y_t-y_t^e) +(1-\mu) \gamma_t^{y^*}.
+\end{align}
+
+\noindent \textbf{Optimal Policy under Discretion}
+
+The optimal monetary policy under discretion can be obtained following the same steps as under commitment. The only difference is that the central bank now takes as given the forward-looking component of expectations $E_t Y_{t+1}^f$ in equation \eqref{constraint_forward}. (It however still takes into account the effect of its policy on the backward-looking long-run component of expectations $Y^*$.) The first-order conditions \eqref{eq_gammatilde}-\eqref{eq_gamma_rec} under commitment therefore become under discretion
+\begin{align}
+&\Omega (Y_t-Y_t^e)+\left[\begin{array}{c}\kappa\\ -1\end{array}\right]\tilde{\gamma}_t +(1-\mu)\gamma_t^*=0,\label{eq_gammatilde_discretion}\\
+& \gamma_t^* = \beta E_t\bigg(M_0'\Omega (Y_{t+1}-Y_{t+1}^e)\bigg) + \beta E_t\bigg(D_0' \gamma_{t+1}^*\bigg).\label{eq_gamma_rec_discretion}
+\end{align}
+Following the same steps as under commitment, equation \eqref{eq_gammatilde_discretion} can be rewritten as equation \eqref{eq_targetcriterion_discretion}.
+
+\section{Target Criterion in the Purely Backward-Looking Case $\rho=0$}\label{appendix_case_rho0}
+This appendix shows that in the case of purely backward-looking expectations $\rho=0$, the target criterion \eqref{eq_targetcriterion} can be written as \eqref{eq_molnarsantoro}, like in the model of \cite{MolnarSantoro2014}.
+To show this, we rewrite the optimization program of the central bank this time in the variables $(Y_t,Y_t^*)$. We denote by $\lambda_t$ and $\gamma^*_t$ the associated Lagrange multipliers. We get the following relations
+\begin{align*}
+\Omega(Y_t-Y_t^e)+\left[\begin{array}{c}\kappa\\-1\end{array}\right]\lambda_t+(1-\mu)\gamma_t^{\star}=0\\
+\beta M'_0\left[\begin{array}{c}\kappa\\-1\end{array}\right]\lambda_{t+1}-\gamma_t^{\star}+\beta\mu \gamma_{t+1}^{\star}=0
+\end{align*}
+Thus, we obtain 
+\begin{equation*}
+\gamma_t^{\star}=\sum\limits_{k=0}^{\infty}(\beta\mu)^k \beta M'_0 \left[\begin{array}{c}\kappa\\-1\end{array}\right]\lambda_{t+k+1}
+\end{equation*}
+Noticing that 
+\begin{align*}
+M'_0 \left[\begin{array}{c}\kappa\\-1\end{array}\right]&= \left[\begin{array}{c}0\\-\beta\end{array}\right]
+\end{align*}
+We finally obtain 
+ 
+\begin{align*}
+\gamma_t^{y,*}&=0,\\
+\kappa\lambda_t+\omega x_t&=0
+\end{align*}
+and 
+
+\begin{equation*}
+\pi_t+\frac{\omega}{\kappa}x_t+(1-\mu)\gamma_t^{\pi,*}=0
+\end{equation*}
+\begin{equation*}
+\gamma_t^{\pi,*}=-\beta^2 \sum\limits_{k=0}^{\infty}(\beta\mu)^k \frac{\omega}{\kappa}x_{t+k+1}
+\end{equation*}
+Combining the two equations gives the target criterion \eqref{eq_molnarsantoro}.
+
+\section{Optimal Policy Path Projected in 2022Q2}\label{app_optimfed_liftoff}
+
+Figure \ref{fig_optimfed_liftoff} plots the same exercise as Figure \ref{fig_optimfed}, but stopping in 2022Q2 at the time the Fed lift interest rates off the ZLB, instead of 2024Q1. As is apparent, with the information on the shocks available at the time, the optimal policy under a large weight on output was calling for a more gradual increase in the Fed Funds rate.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=\textwidth]{figures/optim_policy_compar_liftoff.pdf}
+	\caption{Optimal Response to the Great Inflation Surge of 2021-2022, as from 2022Q1}
+	\begin{minipage}[c]{6.0in}
+		\footnotesize \baselineskip=11pt \vspace{5pt}
+		\emph{Note: The figure gives the path of the US economy under optimal monetary policy for the shocks that hit the US economy from 2021 to 2022Q1 (instead of 2024Q1 as on Figure \ref{fig_optimfed}). The parameters values are the posterior means from the estimation of the model in Table \ref{table_estimation}. The underlying shocks are recovered assuming that the Fed follows the Taylor rule \eqref{eq_taylor} (with coefficients estimated over the period 1984-2007). The optimal monetary policy is given for two values of the weight $\omega$ on the output gap in the loss function. The expected path of the economy from 2022Q1 under the optimal policies is plotted in dashed lines.} 
+	\end{minipage}
+	\label{fig_optimfed_liftoff}
+\end{figure}
