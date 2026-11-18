@@ -1,0 +1,249 @@
+\documentclass[11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{plain}                                                      %%
+%%%%%%%%%% EXACT 1in MARGINS %%%%%%%                                   %%
+\setlength{\textwidth}{6.5in}     %%                                   %%
+\setlength{\oddsidemargin}{0in}   %% (It is recommended that you       %%
+\setlength{\evensidemargin}{0in}  %%  not change these parameters,     %%
+\setlength{\textheight}{8.0in}    %%  at the risk of having your       %%
+\setlength{\topmargin}{0.1in}       %%  proposal dismissed on the basis  %%
+\setlength{\headheight}{0in}      %%  of incorrect formatting!!!)      %%
+\setlength{\headsep}{0.5in}         %%                                   %%
+\setlength{\footskip}{.50in}       %%                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                   %%
+
+%  heading package
+%\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm,a4paper]{geometry}
+
+\usepackage{fancyhdr}
+
+
+%PUT YOUR MACROS HERE
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{lscape}
+\usepackage{setspace,color}
+\usepackage{amsmath,amsthm,enumerate}
+\usepackage{amssymb}
+
+\usepackage{xr-hyper}
+\usepackage{hyperref}
+
+\externaldocument{DISwithI}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{proposition}[thm]{Proposition}
+%\bibliographystyle{agsm2}
+
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\thefigure}{\Alph{figure}}
+\renewcommand{\thetable}{\Alph{table}}
+\newcommand{\beqnary}{\begin{eqnarray}}
+\newcommand{\eeqnary}{\end{eqnarray}}
+
+\begin{document}
+
+\setlength{\headheight}{25pt}
+\pagestyle{fancy}
+\lhead{Reply to Editor \\
+Ms. \#17210, Journal of the European Economic Association}
+%\chead{  \ \ \ \ \ \ \  }
+\rhead{July 2026}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\noindent \textbf{Manuscript \#17210}\\
+\noindent  \textbf{\emph{``Putting the I Back in the IS Curve''}}\\
+\textbf{By St\'ephane Dupraz}
+
+\singlespacing
+% \doublespacing
+
+\bigskip
+\bigskip
+
+%\noindent Dear Editors,\\
+\noindent Dear Alp,
+
+\bigskip
+\medskip
+
+\noindent Thank you very much for giving me the opportunity to revise and resubmit this paper. More importantly, thank you so much to you and the referees for your comments and suggestions. The revisions they have led to have, I believe, greatly improved the paper. Below, I provide a detailed response to each of the points raised in your letter. Separate letters provide detailed responses to each referee.\\
+
+\bigskip
+
+\begin{enumerate}
+\item  \textbf{Empirical motivation}
+
+\begin{quote}
+\itshape ``Empirical motivation. My first concern is that the paper currently lacks empirical motivation. Reading the first two paragraphs, the paper presents itself as a purely theoretical exercise---essentially a possibility result showing that interest rate effects on consumption need not originate in intertemporal substitution. But why should we care about this possibility if intertemporal substitution is in fact the empirically relevant case? The paper needs to make a stronger case that intertemporal substitution is not first-order in practice. There is a substantial literature on Euler equation estimation that speaks to this question, and the paper should engage with it. You might also want to briefly mention the literature on the sensitivity of investment (or durables consumption) to interest rates, and argue this is a stronger entryway for monetary policy than nondurable consumption.
+
+More broadly, I would like to see a sharper and empirically-driven motivation. The paper cannot read as just another analytical contribution to the HANK literature. It needs to read as though it solves an empirical shortcoming of existing models. Related, it would strengthen the paper considerably if this resolution helped us make progress on policy-relevant issues. One natural candidate is the forward guidance puzzle: your framework has the potential to generate discounting of future interest rates under certain conditions, which could help explain why forward guidance appears less powerful in practice than standard models predict. Absent this type of compelling motivation, the introduction reads as though the paper is a better fit for a field journal. So the first thing I will evaluate in a revision is whether the introduction, together with the analysis, helps us make progress on empirically relevant and/or policy-relevant issues---as opposed to offering theoretical additions to the HANK literature.''
+\end{quote}
+
+I am very grateful for this comment. I have thoroughly rewritten the beginning of the Introduction to make the empirical and policy motivation central to the paper from the outset. I have also rewritten the abstract to reflect this change. It now reads:
+
+\begin{quote}
+``How do interest rates affect aggregate consumption? Baseline monetary models---including those with rich household heterogeneity---emphasize a transmission channel that originates in households' desire to substitute consumption across time. Yet empirical estimates of the intertemporal elasticity of substitution often place it close to zero. I show that, when investment interacts with household heterogeneity, a distinct transmission channel arises that operates entirely independently of intertemporal substitution in consumption and originates instead in firms' interest-sensitive investment. Neither high MPCs nor household heterogeneity alone is sufficient. The channel requires that the households providing the funds for firms' investment have lower MPCs than the households receiving the income that higher investment generates. Through this channel, future interest rates matter less than current ones, offering a potential resolution of the forward-guidance puzzle.''
+\end{quote}
+
+The beginning of the Introduction now motivates the paper from two shortcomings of intertemporal substitution as the origin of consumption's response to interest rates. First, the paper engages directly with the empirical literature on the IES. The Introduction starts this motivation by going back to \cite{Hall1988}, who estimates an IES statistically indistinguishable from zero, and points to \cite{Havranek2015}'s meta-analysis of the subsequent literature, which concludes that, after correcting for reporting bias, estimates based on aggregate data center on zero and micro estimates for asset holders center around $1/3$, as well as to \cite{Bestetal2020}, who use quasi-experimental variation in mortgage rates and estimate an IES of 0.1.
+
+Second, following your suggestion, I now make the forward-guidance puzzle a central policy motivation for the paper. The Introduction stresses that models in which consumption responds to interest rates through intertemporal substitution imply that expected interest-rate changes arbitrarily far in the future remain as powerful as current changes, generating implausibly large effects of forward guidance \citep{DNGP2023}. I also take stock of the literature's conclusion that, although household heterogeneity combined with idiosyncratic risk can theoretically solve the forward-guidance puzzle, this requires high-MPC households' incomes to be less exposed to aggregate fluctuations, while the opposite pattern is found in the data \citep{Werning2015,Bilbiie2020,Patterson2023}.
+
+The revised Introduction then summarizes the contribution as follows (p.~1):
+
+\begin{quote}
+``This paper shows that the response of consumption to interest rates can be accounted for through a channel entirely independent of intertemporal substitution---making it compatible with low estimates of the IES---and through which future interest rates matter less than current ones---without relying on the counterfactual assumption that high-MPC households' incomes are less exposed to aggregate fluctuations.''
+\end{quote}
+
+The revised Introduction also explains why investment provides a natural alternative entry point for monetary policy. It now emphasizes that investment is among the components of GDP that respond most strongly to monetary policy, together with closely related durable expenditure, pointing to \cite{ChristianoEichenbaumEvans2005} and \cite{ErcegLevin2006}.
+
+Finally, these changes to the motivation are complemented by new analysis later in the paper. Section \ref{section_empiricaldiscipline} (``Empirical Discipline of the Two Components of the Interest Rate Channel'') engages further with the empirical literature and makes explicit which empirical objects discipline the traditional intertemporal-substitution component and the component originating in firms' interest-sensitive investment. In addition to the IES evidence discussed above, it discusses recent microeconomic evidence on firms' direct investment sensitivity to interest rates, including \cite{Caoetal2023}, \cite{BestBornMenkhoff2025}, and \cite{SharpeSuarez2021}, which provide direct estimates of firms' investment sensitivity to interest rates. Section \ref{section_ItoC} also now provides a quantitative decomposition of the two components and shows how their relative importance varies over empirically plausible values of the IES---see the responses to specific referee points below.
+
+\item  \textbf{The dividend-financing assumption and the broader mechanism}
+
+\begin{quote}
+\itshape ``The dividend-financing assumption and the broader mechanism. My second major concern, shared by all three referees, is that the assumption of dividend-financed investment is too narrow. In practice, dividends are smooth and firms often finance investment through debt issuance. However, I do not think this concern is necessarily devastating. The broader economic logic is that even when investment is financed by debt (or equity), the investors who purchase that debt are likely to be low-MPC wealthy households who participate more actively in financial markets. So the liquid income that finances investment comes out of their pockets---not just in your model, but also in sensible extensions.
+
+This observation suggests that your results may be more general than you currently claim. However, this broader interpretation also requires a significant rewrite in terms of how you explain the mechanism. The paper currently places heavy emphasis on ``heterogeneity in the share of labor income in household incomes''---including in the abstract and introduction. While this is indeed what drives the results in the narrow model you adopt, once we consider the broader mechanism, I am not convinced that labor vs. capital income heterogeneity is the key object. Rather, what seems to matter is which households ultimately provide the financing for investment---whether through forgone dividends or through purchasing newly issued assets.
+
+To clarify this broader logic, I would like you to consider at least one simple extension in which firms finance investment through outside issuance (e.g., debt held by households). This extension will help illuminate the common denominator between that case and your current model. That common denominator should then guide how you present your results---whether the key heterogeneity is about labor vs. capital income shares, or about something else (namely, who provides the liquidity that finances investment).''
+\end{quote}
+
+Thank you so much for this comment and for pushing me to clarify this point. The paper now contains an explicit analysis of what difference debt vs. equity financing makes, and its conclusions have led me to revise the way the mechanism is presented in the paper. Simply put, your conjecture is correct: the mechanism is more general than the previous version of the paper claimed, and it does not rely on investment being financed through a one-for-one reduction in dividends. The paper's previous focus on dividends and payouts was misleading.
+
+First, I have added a new Section \ref{section_debtfinancing}, ``Debt vs Equity Financing,'' which introduces corporate debt explicitly. It extends the framework of Section \ref{section_hetero} to allow firms to finance arbitrary shares of both their steady-state investment and their marginal investment in response to shocks through debt, and to allow hand-to-mouth households to hold a different share of firms' bonds $s_B^H$ and of firms' equity $s_E^H$. A key result is that debt versus equity financing is neutral when the two household groups hold the same shares of corporate bonds and equity. As Section \ref{section_debtfinancing} explains:
+
+\begin{quote}
+``Crucially however, both [new effects appearing when distinguishing debt vs equity financing] are proportional to the difference $s_E^H-s_B^H$. Bond versus equity financing only matters if hand-to-mouth households hold a different share of corporate bonds than they do of corporate stocks. If they hold the same shares of both, $s_E^H=s_B^H$---which we can then denote $s_K^H$ as in Section \ref{section_hetero}---the distinction between debt and equity financing is neutral for the incomes of hand-to-mouth and permanent-income households. Indeed, when firms finance more of their investment through debt, bondholders have less income available for consumption. But, \emph{for a given level of investment $X_t$}, more debt issuance translates into more income available to equity holders. When $s_B^H=s_E^H$, bond and equity holders are the same so the two effects cancel out.''
+\end{quote}
+
+This result clarifies that what matters for the mechanism is not whether investment mechanically reduces dividends, but which households ultimately provide the funds used to finance investment, as you intuited. The previous discussion in Section \ref{section_hetero} placed too much emphasis on dividends and retained earnings, which made the mechanism appear more special than it is. I have rewritten that discussion accordingly in Section \ref{section_hetero}:
+
+\begin{quote}
+``If firms do not issue debt and finance all their investment through retained earnings or new equity issuance, firms' securities correspond to firms' stocks and aggregate capital income corresponds to aggregate dividends net of new equity issuance. However, assuming that all investment is equity financed is not necessary. As long as hand-to-mouth and permanent-income households hold the same share of firms' bonds as they do of firms' stocks, debt versus equity financing makes no difference, as I show in the next subsection.''
+\end{quote}
+
+This broader interpretation is also reflected throughout the paper and in the rewritten abstract and Introduction, where I now describe the relevant heterogeneity in terms of the MPCs of the households providing the funds for firms' investment relative to those of the households receiving the income generated by higher investment. I retained the terminology of capital- and labor-income shares in some instances, as it is not in contradiction with this new insight, but the main terminology is now phrased in terms of who provides the funds for firms' investment.
+
+Finally, I added Section \ref{section_debtfinancing_aggregate}, ``Away from $s_B^H=s_E^H$,'' which studies numerically what happens in the aggregate when the neutrality condition $s_B^H=s_E^H$ does not hold. The exercise shows that debt financing can generate additional redistribution when bond and equity ownership differ, primarily through the effect of interest rates on the servicing of steady-state corporate debt. But the way in which the \emph{new} investment induced by an interest-rate change is financed has quantitatively little effect. As Section \ref{section_debtfinancing_aggregate} concludes:
+
+\begin{quote}
+``Hence, when firms finance the new investment triggered by lower interest rates through debt $\ell=1$, but do not have legacy debt from financing their steady-state investment via debt $\ell^*=0$, the difference between debt and equity financing is very small [\ldots] Even away from $s_E^H=s_B^H$, how the \emph{new} investment triggered by lower interest rates is financed has little effect.''
+\end{quote}
+
+The case in which firms finance steady-state investment through equity or retained earnings but use debt to finance temporary increases in investment is consistent with firms keeping dividends smooth while using debt to accommodate changes in investment needs.
+
+Thus, the debt-financing extension confirms the broader logic suggested in your letter. The benchmark mechanism is not fundamentally a dividend-financing mechanism. Rather, its general form depends on the distribution of the income generated by investment and on which households hold the financial claims through which that investment is ultimately financed.
+
+\end{enumerate}
+
+\medskip
+
+\textbf{Specific referee points}
+
+\medskip
+
+\begin{enumerate}[a)]
+
+\item  \textbf{Testable implications and available evidence}
+
+\begin{quote}
+\itshape ``R1 asks for testable implications and, to the extent possible, a discussion of available evidence. I think this is a good idea and would strengthen the paper's appeal.''
+\end{quote}
+
+I am grateful for this suggestion. I have added a new subsection, Section \ref{section_empiricaldiscipline}, ``Empirical Discipline of the Two Components of the Interest Rate Channel,'' which develops the empirical counterparts and moments that discipline the relative importance of the two components of the interest-rate channel.
+
+The decomposition developed in the paper points to three sets of empirical objects. First, the traditional component originating in households' intertemporal substitution is disciplined by microeconomic estimates of the IES. As discussed above, I now engage extensively with this empirical literature, in particular \cite{Hall1988}, \cite{Havranek2015}, and \cite{Bestetal2020}.
+
+Second, the component originating in firms' interest-sensitive investment is disciplined in partial equilibrium by the direct sensitivity of firms' investment to interest rates. Section \ref{section_empiricaldiscipline} now discusses recent firm-level evidence that seeks to identify precisely this object, including \cite{Caoetal2023}, \cite{BestBornMenkhoff2025}, and \cite{SharpeSuarez2021}. These estimates play for the investment component a role analogous to microeconomic estimates of the IES for the traditional component.
+
+Third, the general-equilibrium propagation of the investment component depends on which households receive the income generated by investment and which households ultimately finance it, and on their respective MPCs. In the TANK model this is summarized by the parameter $\xi$. The corresponding moments in richer micro data are the covariance between household MPCs and their shares in aggregate labor income, and the covariance between household MPCs and their ownership of the corporate securities through which investment is financed. 
+
+Taken together, these empirical counterparts clarify how the relative strength of the two components can be disciplined with micro data and how differences in income and asset-ownership structures translate into differences in the strength of the investment component.
+
+\item  \textbf{Quantitative assessment}
+
+\begin{quote}
+\itshape ``R1 also asks for a quantitative assessment. I encourage you to attempt this. The purpose should be to assess magnitudes rather than to provide precise quantification, so this need not be an onerous exercise.''
+\end{quote}
+
+I am grateful to the referee for encouraging me to provide a quantitative assessment. I have added such an exercise in Section \ref{section_ItoC}. It quantifies the relative importance of the two components of the interest rate channel as the IES varies, for aggregate investment, aggregate consumption, and aggregate demand.
+
+I exploit the tractability of the model to decompose exactly the responses of investment, consumption, and aggregate demand to an interest-rate shock into the component originating in firms' interest-sensitive investment and the component originating in households' intertemporal substitution. I then measure the share of the cumulative response of each variable to a contemporaneous interest-rate shock accounted for by the component originating in investment and report how this share varies with the IES. The new Figure \ref{figure_accountedshare} reports the results.
+
+For investment, the component originating directly in firms' interest-sensitive investment is quantitatively dominant. The main result is a quantification of the importance of the investment component for aggregate consumption, and of how much it varies with the IES. I find that the investment component accounts for 31\% of the cumulative consumption response when the IES is 0.1, the estimate of \cite{Bestetal2020}, and 12\% when the IES is $1/3$, around which the estimates surveyed by \cite{Havranek2015} are centered. As the IES approaches zero, the investment component accounts for the entire consumption response.
+
+The exercise therefore concludes that the investment component is quantitatively meaningful over empirically plausible values of the IES, and becomes dominant as intertemporal substitution in consumption becomes close to zero. At the same time, I view these numbers as a stylized assessment of magnitudes, in line with your suggestion, rather than as a precise quantitative evaluation.
+
+\item  \textbf{Financial frictions and liquidity-constrained investment}
+
+\begin{quote}
+\itshape ``R2 asks what happens when there are financial frictions and investment is partly liquidity-constrained rather than purely Q-driven. This is an important issue to discuss, and a model extension (even in an appendix) would be valuable.''
+\end{quote}
+
+I thank the referee for raising this important issue. The revised paper addresses it in two ways.
+
+First, Section \ref{section_investmentfunction} now explicitly acknowledges the limitations of using frictionless Q theory as the benchmark investment model and clarifies the role that this benchmark plays in the paper. I now write:
+
+\begin{quote}
+``The focus on the Q theory with no financial constraints effectively restricts to the traditional neoclassical channel through which interest rates affect investment by changing the user cost of capital. It abstracts from other important channels that arise when firms are subject to financial frictions, through firms' balance-sheet positions, the cost and availability of external finance, and the value of collateral \citep[e.g.][]{BernankeGertler1989,KiyotakiMoore1997,OttonelloWinberry2020,CloyneEtAl2023}. Depending on the financial frictions they capture, these channels may have different implications for the sensitivity of investment to interest rates. Appendix \ref{appendix_collateral} derives the investment function in a simple model of a firm subject to collateral constraints on its borrowing and shows that it also implies that future interest rates matter less than current ones. The analysis using the Q theory mainly serves to illustrate the broader point of the paper in Sections \ref{section_investmentcross} and \ref{section_ItoC}: once aggregate consumption depends on investment, its response to interest rates inherits the dependence of investment on interest rates.''
+\end{quote}
+
+Second, I have added Appendix \ref{appendix_collateral}, ``An Investment Function with Financial Constraints,'' which explicitly replaces the frictionless investment problem with one in which firms face a binding collateralized borrowing constraint \`a la \cite{KiyotakiMoore1997}. Firms finance investment using internal funds and debt, with borrowing limited by the collateral value of their capital. Interest rates then affect investment by changing the value of collateral and by changing the amount of debt that can be raised against it.
+
+The appendix derives the resulting investment function conditional on the path of internal funds. Its main result is that the qualitative result emphasized in the paper survives in this environment: future interest rates remain discounted relative to current ones. In particular, from one period ahead onward their weights decline geometrically at a rate $\lambda_B$, with
+$\lambda_B<\beta(1-\delta)<1.$
+
+\item  \textbf{Novelty relative to quantitative HANK models}
+
+\begin{quote}
+\itshape ``R3 wants clarification on whether your contribution is a genuinely new channel or whether it already exists in quantitative HANK models but has been underemphasized. You should address this directly. If the channel is present but underappreciated, that is still a valuable contribution---but the framing should be adjusted accordingly.''
+\end{quote}
+
+I thank the referee for pushing me to clarify the novelty of the mechanism. I agree that the previous version did not distinguish clearly enough between claiming that the mechanism is absent from richer HANK models and isolating and characterizing a mechanism that already operates in such models. I have revised the framing of the paper throughout to make clear that my interpretation is the latter.
+
+In particular, I now state explicitly in the Introduction that the ingredients required for the mechanism are also present in quantitative HANK models with investment, and that the contribution of the paper is to isolate the mechanism analytically, characterize its determinants, quantify its importance, and study its implications for the relative effects of present and future interest rates. I now write (p.~2):
+
+\begin{quote}
+``Investment, however, is not enough. To affect aggregate consumption, investment must interact with household heterogeneity in MPCs, in a specific way. Because the three ingredients underlying the mechanism are also present in quantitative HANK models with investment, the mechanism operates there as well. The contribution of the paper is to isolate it analytically and to study its determinants, quantitative importance, and implications for the relative importance of present and future interest rates.''
+\end{quote}
+
+Accordingly, the paper no longer suggests that in HANK models the effect of interest rates on consumption always originates in intertemporal substitution. I have also clarified why I use a TANK model rather than a richer quantitative HANK model. The purpose of the TANK structure is not to suggest that the mechanism is specific to TANK, but to provide a tractable environment in which the interaction between investment and heterogeneous MPCs can be isolated and characterized analytically.
+
+\end{enumerate}
+
+\medskip
+
+I hope the answers address your concerns, and thank you again for your very useful suggestions and comments.
+
+\bigskip
+
+St\'{e}phane Dupraz
+
+\bigskip
+\bigskip
+  \begin{center}
+  ********************
+  \end{center}
+\bigskip
+\bigskip
+
+{\baselineskip=14pt
+	\bibliographystyle{ecta3etal}
+	\bibliography{bibliography}}
+
+\end{document}

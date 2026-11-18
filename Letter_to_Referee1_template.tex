@@ -1,0 +1,204 @@
+\documentclass[11pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagestyle{plain}                                                      %%
+%%%%%%%%%% EXACT 1in MARGINS %%%%%%%                                   %%
+\setlength{\textwidth}{6.5in}     %%                                   %%
+\setlength{\oddsidemargin}{0in}   %% (It is recommended that you       %%
+\setlength{\evensidemargin}{0in}  %%  not change these parameters,     %%
+\setlength{\textheight}{8.0in}    %%  at the risk of having your       %%
+\setlength{\topmargin}{0.1in}       %%  proposal dismissed on the basis  %%
+\setlength{\headheight}{0in}      %%  of incorrect formatting!!!)      %%
+\setlength{\headsep}{0.5in}         %%                                   %%
+\setlength{\footskip}{.50in}       %%                                   %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%                                   %%
+
+%  heading package
+%\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm,a4paper]{geometry}
+
+\usepackage{fancyhdr}
+
+
+%PUT YOUR MACROS HERE
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage{lscape}
+\usepackage{setspace,color}
+\usepackage{amsmath,amsthm,enumerate}
+\usepackage{amssymb}
+
+\usepackage{xr-hyper}
+\usepackage{hyperref}
+
+\externaldocument{DISwithI}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{proposition}[thm]{Proposition}
+%\bibliographystyle{agsm2}
+
+\newcommand{\bi}{\begin{itemize}}
+\newcommand{\ei}{\end{itemize}}
+
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+
+\renewcommand{\theequation}{\arabic{equation}}
+\renewcommand{\thefigure}{\Alph{figure}}
+\renewcommand{\thetable}{\Alph{table}}
+\newcommand{\beqnary}{\begin{eqnarray}}
+\newcommand{\eeqnary}{\end{eqnarray}}
+
+\begin{document}
+
+\setlength{\headheight}{25pt}
+\pagestyle{fancy}
+\lhead{Reply to Referee 1 \\
+Ms. \#17210, Journal of the European Economic Association}
+%\chead{  \ \ \ \ \ \ \  }
+\rhead{July 2026}
+\lfoot{}
+\cfoot{\thepage}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+
+
+\noindent \textbf{Manuscript \#17210}\\
+\noindent  \textbf{\emph{``Putting the I Back in the IS Curve''}}\\
+\textbf{By St\'ephane Dupraz}
+
+\singlespacing
+% \doublespacing
+
+\bigskip
+\bigskip
+
+\noindent Dear Referee,
+
+\bigskip
+\medskip
+
+\noindent I would like first to thank you very much for your relevant comments and suggestions on the paper. I am very grateful for these, as the revisions they led to have, I believe, substantially improved the paper. Below, I provide a detailed response to each comment in turn.\\
+
+\noindent \textbf{Main Comments}\\
+
+\begin{enumerate} [  1.]
+\item  \textbf{Empirical relevance}
+
+\begin{quote}
+\itshape ``A central message of the paper is that monetary policy affects aggregate demand not only through intertemporal substitution in consumption, but also directly through investment demand when household heterogeneity is present. While this distinction is conceptually sharp, the paper currently offers little guidance on which of these two direct channels is empirically more important, or how one might discriminate between them in the data.
+
+Testing this distinction directly would be a home run, but even short of that, the paper should do more to translate the theory into testable implications. For instance, are there differential predictions for the relative responses of consumption and investment across environments with different income or ownership structures?
+
+At present, the reader is left with a clean decomposition but little sense of how to confront it with data. Developing a small set of empirical predictions---or at least clearly stating what moments would discipline the relative strength of the two channels---would greatly enhance the paper's impact and relevance.''
+\end{quote}
+
+I thank the referee for this suggestion. I have added a new subsection \ref{section_empiricaldiscipline}, “Empirical Discipline of the Two Components of the Interest Rate Channel,” that develop what moments and empirical counterparts discipline the relative importance of the two channels. This discussion comes after a new quantification of the importance of the two channels which I also added to the paper---see my response to the next comment.
+
+The decomposition developed in the paper points to three sets of empirical objects that can be disciplined using micro data. The first one, as emphasized already in the previous version of the paper, is the intertemporal elasticity of substitution. I now discuss the range of such estimates in studies that use micro data, in particular the value of roughly 1/3 around which the estimates surveyed by \cite{Havranek2015} are centered, and the estimate of about 0.1 obtained by \cite{Bestetal2020}.
+
+Second, the component originating in firms' interest-sensitive investment is disciplined in partial equilibrium by the direct sensitivity of firms' investment to interest rates. I now discuss recent firm-level evidence that seeks to identify precisely this object, including \cite{Caoetal2023}, \cite{BestBornMenkhoff2025}, and \cite{SharpeSuarez2021}. These estimates play for the investment component a role analogous to microeconomic estimates of the IES for the traditional component.
+
+Third, the general-equilibrium propagation of the investment component depends on which households receive the income generated by investment and which households ultimately finance it, and on their respective MPCs. In the TANK model, this is summarized by the parameter $\xi$. The corresponding moments in richer micro data are the covariance between household MPCs and their shares in aggregate labor income, and the covariance between household MPCs and their ownership of the corporate securities through which investment is financed. The investment component is stronger, all else equal, when high-MPC households receive a larger share of labor income but hold a smaller share of these financial claims.
+
+Taken together, these empirical counterparts clarify how the relative strength of the two components can be disciplined with micro data and how differences in income and asset-ownership structures translate into differences in the strength of the investment component.
+
+\item  \textbf{Quantitative importance}
+
+\begin{quote}
+\itshape ``Relatedly, the paper remains almost entirely qualitative in its assessment of the new channel. While the sequence-space analysis is elegant, it is difficult to gauge whether the investment-driven consumption effect is quantitatively first-order or largely secondary relative to existing channels emphasized in the (T)HANK literature.
+
+I would strongly encourage the author to include a quantitative evaluation, even if stylized. One natural route would be to embed the mechanism in a simple THANK environment (Bilbiie, 2025) to shed light on the relative importance on the different 'direct' channels as well as how investment changes the indirect effects.
+
+Even a limited exercise along these lines would help readers understand whether the paper mainly offers a conceptual clarification or whether it meaningfully revises our quantitative understanding of monetary transmission.''
+\end{quote}
+
+I am grateful to the referee for this suggestion. I agree that the previous version of the paper did not provide enough guidance on the quantitative importance of the investment component relative to the traditional component originating in intertemporal substitution. The paper has incorporated this comment in two ways.
+
+First, I have added a quantitative evaluation of the relative importance of the two components of the interest rate channel in Section \ref{section_ItoC}. Rather than embed the mechanism in a separate quantitative model, I exploit the tractability of the model to decompose exactly the responses of investment, consumption, and aggregate demand to an interest-rate shock into the component originating in firms' interest-sensitive investment and the component originating in households' intertemporal substitution. I then measure the share of the cumulative response of each variable to a contemporaneous interest-rate shock accounted for by the component originating in investment and study how this share varies with the IES. Figure \ref{figure_accountedshare} reports the results.
+
+For investment, the component originating directly in firms' interest-sensitive investment is quantitatively dominant. The main result is a quantification of the importance of the investment component for aggregate consumption, and of how much it varies with the IES. I find that the investment component accounts for 31\% of the cumulative consumption response when the IES is 0.1, the estimate of \cite{Bestetal2020}, and 12\% when the IES is 1/3, around which the estimates surveyed by \cite{Havranek2015} are centered. As the IES approaches zero, the investment component accounts for the entire consumption response.
+
+Second, I have also followed the referee's suggestion of considering the mechanism in the richer household environment of \cite{Bilbiie2021}. Appendix \ref{appendix_switching} extends the model by introducing idiosyncratic risk and household switching along the lines of \cite{Bilbiie2021}, while preserving the heterogeneity in capital ownership that is central to the investment mechanism studied here. The resulting consumption block nests both the baseline model of the paper and the consumption block of \cite{Bilbiie2021}. It shows that the two mechanisms coexist: idiosyncratic risk generates the discounting or compounding associated with precautionary saving and cyclical inequality, while investment continues to affect aggregate consumption when the households benefiting from the income generated by investment differ from those financing it. This appendix is analytical rather than quantitative---the quantitative assessment is provided by the exercise described above---but it shows directly that the investment mechanism survives in the richer household environment suggested by the referee.
+
+\item  \textbf{Modeling assumptions}
+
+\begin{quote}
+\itshape ``The paper relies on some specific assumptions for tractability. Specifically, there are two broader issues that in my view deserve a more explicit discussion.
+
+First, does it matter whether capital is owned by firms or by households? With household-owned capital, dividends correspond to pure profits rather than retained earnings, and investment does not mechanically reduce payouts. In that case, the investment-driven redistribution channel hinges on cross-household ownership and financing patterns rather than on investment per se. Clarifying how essential the firm-ownership assumption is---and whether the mechanism should be interpreted more generally as a condition on who finances investment---would help readers assess the scope of the results.
+
+Second, the paper deliberately abstracts from cyclical risk and time-varying inequality in order to isolate the new channel. While this is understandable, it leaves open how the mechanism interacts with precautionary-savings motives and redistribution channels that are central in the broader HANK literature. Even if a full extension is beyond the scope of the paper, a clearer discussion of how cyclical risk might amplify, dampen, or interact with the investment channel would strengthen the paper.''
+\end{quote}
+
+I thank the referee for pushing me to clarify both of these points. I have added extensions addressing each of them. On the first point, I have added two extensions that clarify the importance of the firm-ownership assumption and the interpretation of the mechanism as a condition on who finances investment.
+
+First, a new Section \ref{section_debtfinancing}, as well as a new Section \ref{section_debtfinancing_aggregate}, retain firm ownership of capital but allows firms to finance investment through debt as well as equity. The analysis shows that debt versus equity financing makes no difference when the two groups of households hold the same relative shares of firms' bonds and equity. More generally, what matters is which households ultimately provide the funds used to finance investment, rather than whether investment mechanically reduces dividends. This insight has also led me to adjust the presentation of the mechanism throughout the paper and in Section \ref{section_hetero} in particular, avoiding the misleading focus on dividends and payouts.
+
+Second, Appendix \ref{appendix_householdownedK} explicitly considers the alternative assumed by the referee, in which households directly own the physical capital stock. I show that, conditional on the path of investment, household ownership of capital makes no difference to the consumption block provided that hand-to-mouth households own the same share of physical capital as they do of firms' equity. Away from this condition, the ownership structure matters because it changes the distribution of the cash flows associated with investment, much as differences in the ownership of debt and equity matter in the debt-financing extension. Thus, the mechanism does not rely on the assumption that firms own the capital stock; the relevant issue is the distribution across households of the income generated by investment and of the claims through which investment is financed.
+
+On the second point, as mentioned in response to the previous comment I have added Appendix \ref{appendix_switching}, which extends the model to include idiosyncratic risk and the associated precautionary-saving channel, following \cite{Bilbiie2021}. The extension shows that the two mechanisms coexist. Idiosyncratic risk can generate discounting or compounding of future interest rates depending on the cyclicality of inequality, as in the existing literature, while investment continues to affect aggregate consumption through the redistribution mechanism studied in the paper. Thus, cyclical risk does not eliminate the investment channel; rather, it introduces an additional propagation mechanism that operates alongside it.
+
+\end{enumerate}
+
+~\\
+
+\noindent \textbf{Minor Comments}\\
+
+\begin{enumerate}
+
+\item  \textbf{Relation to Bilbiie, K\"anzig and Surico}
+
+\begin{quote}
+\itshape ``Appendix A.2 of \cite{Bilbiieetal2022} considers an isoelastic investment function and already shows the presence of a direct investment effect, albeit without fully developing its implications. It would be useful to acknowledge this more explicitly and clarify how the present paper goes beyond that analysis.''
+\end{quote}
+
+I thank the referee for pointing this out. I now explicitly acknowledge Appendix A.2 of \cite{Bilbiieetal2022} and clarify the difference with the present paper. In particular, I now write (p.6, footnote 5):
+
+\begin{quote}
+``\cite{Bilbiieetal2022} show in Appendix A.2 that their results are robust to allowing their static reduced-form investment function to respond directly to the current interest rate in addition to current aggregate demand. Their focus remains on the amplification generated by their capital inequality channel. The analysis here instead isolates the direct effect operating through interest-elastic investment and characterizes its general-equilibrium interaction with investment.''
+\end{quote}
+
+\item  \textbf{Empirical references on monetary policy and investment}
+
+\begin{quote}
+\itshape ``In addition to the Norwegian evidence, Cloyne et al. (2023) study the response of investment to monetary policy in the U.S. and the U.K.''
+\end{quote}
+
+I thank the referee for pointing me to this paper. I now discuss the evidence from Cloyne et al. (2023) in the literature review, alongside the Norwegian evidence.\\
+
+\item  \textbf{Model setup}
+
+\begin{quote}
+\itshape ``It would be very helpful to show the full model, including household problem, firm problem, and equilibrium conditions, in an appendix. Given the paper's conceptual focus, having the complete setup written out would make it easier for readers to assess assumptions and potentially build on the analysis.''
+\end{quote}
+
+I agree that it is useful to collect the full model in one place. I have added an equilibrium characterization at the beginning of Appendix \ref{appendix_proofinvestmentcross}, which summarizes the household side, the distribution and aggregation of income and consumption, the firms' production and investment problems, capital accumulation, and the equilibrium conditions. This makes explicit the full set of equations underlying the analytical results in the main text.
+
+\end{enumerate}
+
+\medskip
+
+I hope the answers address your concerns, and thank you again for your very useful suggestions and comments.
+
+\bigskip
+\hspace{3cm}
+
+St\'{e}phane Dupraz
+
+\bigskip
+\bigskip
+  \begin{center}
+  ********************
+  \end{center}
+\bigskip
+\bigskip
+
+{\baselineskip=14pt
+	\bibliographystyle{ecta3etal}
+	\bibliography{bibliography}}
+
+\end{document}
